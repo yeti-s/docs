@@ -131,7 +131,6 @@ const Navigation = () => {
     <NavList>
       {
         treeData.items.sort(function(a, b) {
-          console.log(treeData)
           let x = a.title.toLowerCase();
           let y = b.title.toLowerCase();
           if (x<y) return -1;
