@@ -40,7 +40,7 @@ description: 'Point Cloud Auto Correction'
 ```
 작성하고자 하는 내용이 많아 Sub Contents의 형식으로 추가하려고 할 때, 해당하는 .mdx 파일의 파일 이름과 동일한 폴더를 생성한 후 추가할 내용을 가진 .mdx 파일을 생성한다.
 
-![](./assets/docs_0001_sub_contents.PNG)
+![](./assets/docs_0000_sub_contents.PNG)
 
 ### 수식 추가
 공부 내용을 정리하다 보면 수식을 사용할 일이 많을 것이라 예상이된다.
@@ -84,3 +84,23 @@ $$
 $$
 S_n = \frac{n(2a + (n-1)d)}{2}
 $$
+
+### 
+위 수식 추가 작업을 진행하며 gatsby-theme-document 모듈 내부를 수정하였으나 이는 다른 환경에서 Git clone 하면 해당 부분을 다시 수정해야 하는 번거로움이 있다.
+그래서 Git에 변경사항이 저장되고 또 template의 customize를 가능하게 하도록 해당 모듈을 root directory로 이식하는 작업을 진행하려 한다.
+
+뭐 크게 어려운 작업은 없고 gatsby-config.js, package.json 하나로 합쳐주고 기타 source file들을 root directory에 옮겨오기만 하면 된다.
+Package의 src를 변경할 수 있게 되어서 간단하게 본문의 content가 가운데 정렬이 되도록 src를 수정해주었다.
+```js
+// src/components/Layout.js
+...
+const SiteContentWrapper = styled.div`
+  flex-grow: 1;
+  min-width: 20rem;
+  display: flex;
+  justify-content: center
+`;
+...
+```
+
+![](assets/docs_0001_change_template_style.PNG)
