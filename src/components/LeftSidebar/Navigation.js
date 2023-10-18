@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { graphql, useStaticQuery } from 'gatsby';
 import React, { useState } from 'react';
 import NavItem from './NavItem';
+import { useEffect } from 'react';
 
 /**
  * This File was inspired by https://github.com/hasura/gatsby-gitbook-starter
@@ -125,11 +126,21 @@ const Navigation = () => {
   const [treeData] = useState(() => {
     return calculateTreeData(allMdx.edges, sidebarConfig);
   });
+
   return (
     <NavList>
-      {treeData.items.map(item => (
-        <NavItem key={item.url} item={item} />
-      ))}
+      {
+        treeData.items.sort(function(a, b) {
+          console.log(treeData)
+          let x = a.title.toLowerCase();
+          let y = b.title.toLowerCase();
+          if (x<y) return -1;
+          if (x>y) return 1;
+          return 0;
+        }).map(item => (
+          <NavItem key={item.url} item={item} />
+        ))
+      }
     </NavList>
   );
 };
