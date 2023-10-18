@@ -14,8 +14,11 @@
     "gatsby": "^2.23.3",
     "gatsby-theme-document": "1.0.10",
     "gh-pages": "^6.0.0",
+    "katex": "^0.13.24",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "rehype-katex": "^5.0.0",
+    "remark-math": "^3.0.1",
     "theme-ui": "^0.3.1"
   }
 }
