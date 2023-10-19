@@ -39,8 +39,24 @@ description: 'Point Cloud Auto Correction'
 ---
 ```
 작성하고자 하는 내용이 많아 Sub Contents의 형식으로 추가하려고 할 때, 해당하는 .mdx 파일의 파일 이름과 동일한 폴더를 생성한 후 추가할 내용을 가진 .mdx 파일을 생성한다.
+또한 .mdx 파일에서 사용할 이미지는 해당 파일과 동일한 위치에 assets/{file_name} 폴더에 저장한다.
+```
+|-- content
+    |-- file1.mdx
+    |-- file1
+    |   |-- subfile1.mdx
+    |   |-- assets
+    |       |-- subfile1
+    |           |-- subfile1_image1.png
+    |           |-- subfile2_image1.png
+    |-- assets
+    |   |-- file1
+    |       |-- file1_image1.png
+    |       |-- file1_image2.png
 
-![](./assets/docs_0000_sub_contents.PNG)
+```
+
+
 
 ### 수식 추가
 공부 내용을 정리하다 보면 수식을 사용할 일이 많을 것이라 예상이된다.
@@ -103,4 +119,4 @@ const SiteContentWrapper = styled.div`
 ...
 ```
 
-![](assets/docs_0001_change_template_style.PNG)
+![](assets/docs/00_change_template_style.PNG.PNG)
