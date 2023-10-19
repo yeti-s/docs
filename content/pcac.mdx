@@ -12,7 +12,7 @@ MMS(Mobile Mapping System) 장비를 이용하여 수집한 데이터를 센서 
 [repository](https://github.com/yeti-s/PCAC)
 
 ## 기존 보정 방식
-![](./PCAC/assets/0001_pcd_pos_error.png "서로 다른 시간에 동일한 구간을 촬영한 Point Cloud")
+![](assets/pcac/01_pcd_pos_error.png "서로 다른 시간에 동일한 구간을 촬영한 Point Cloud")
 동일한 공간을 서로 다른 시간에 촬영한 데이터를 보면 IMU 센서에 의한 오차로 인해 point들이 어느정도 차이가 나는 것을 볼 수 있다. 전체 HD Map을 제작하기 위해 이를 Translation과 Interpolation을 통해 데이터를 보정한다.
 
 ## 데이터 선택
@@ -28,7 +28,7 @@ MMS(Mobile Mapping System) 장비를 이용하여 수집한 데이터를 센서 
 * [Argoverse2](https://www.argoverse.org/av2.html)
     이미 데이터가 어느정도 정제되었지만 Rotation, Translation과 같은 캘리브레이션을 위한 정보도 함께 제공되어 적합하다고 판단하였다. 또한 더 많은 채널의 라이다와 더 높은 초당 카메라 이미지 수를 가지고 있어 Nuscene 보다 더 정밀한 지도를 만들 수 있다고 생각하여 위 데이터를 채택하였다.  
 
-![](./PCAC/assets/0000_nuscene_argoverse.PNG "각 데이터셋의 캘리브레이션 된 Potree")
+![](assets/pcac/00_nuscene_argoverse.PNG "각 데이터셋의 캘리브레이션 된 Potree")
 
 ## 지리 공간 표시
 IMU 정보를 가진 Ego Vehicle 데이터를 이용하여 GeoJSON 형식으로 촬영된 지리 공간을 웹에서 Openlayers API를 활용해 표시할 수 있도록 한다. Ego Vehicle의 Translation 값은 각 도시의 Original 좌표 기준 미터 단위의 Offset을 나타낸다.

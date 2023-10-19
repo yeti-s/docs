@@ -3,7 +3,7 @@ title: 'Smooth Quantization'
 description: 'Accurate and Efficient Post-Training Quantization for Large Language Models'
 ---
 
-논문 [SmoothQuant: Accurate and Efficient Post-Training Quantization for Large Language Models]('https://arxiv.org/abs/2211.10438') 를 바탕으로 작성되었습니다.
+논문 [SmoothQuant: Accurate and Efficient Post-Training Quantization for Large Language Models]('https://arxiv.org/abs/2211.10438') 를 바탕으로 작성하였다.
 
 ## LLM Quantization의 어려움
 LLM(Large Language Model)의 경우 아래와 같은 특징이 있다.
@@ -15,7 +15,7 @@ LLM(Large Language Model)의 경우 아래와 같은 특징이 있다.
 ('per-channel activation quantization does not map well to hardware-accelerated GEMM kernels.' 라고 적혀 있는데 자세히는 잘 모르겠지만 한번에 병렬 연산이 안되기 떄문인 것 같다.)
 
 ## 아이디어
-![](assets/0000_acts_weights_graph.PNG)
+![](assets/smooth_quant/00_acts_weights_graph.PNG)
 
 위 그림과 같이 기존 Activation은 특정 channel에서 큰 값을 가지는 특징이 있다.
 반면에 weight는 대체로 평탄하게 분포하는 것을 볼 수 있다.
