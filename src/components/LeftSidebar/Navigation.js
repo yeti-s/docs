@@ -130,7 +130,6 @@ const Navigation = () => {
   return (
     <NavList>
       {
-        // treeData.items.map(item => {
         treeData.items.sort(sortByTitle).map(item => {
           item.items.sort(sortByTitle);
           return <NavItem key={item.url} item={item} />
