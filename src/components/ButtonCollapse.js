@@ -5,14 +5,14 @@ import Add from './icons/Add';
 import Icon from './icons/Icon';
 import Minimize from './icons/Minimize';
 
-const ButtonCollapse = ({ onClick, isCollapsed }) => {
+const ButtonCollapse = ({ onClick, isOpened }) => {
   return (
     <StyledButtonCollapse
       onClick={onClick}
       aria-label="Toggle Subnavigation"
       title="Toggle Subnavigation"
     >
-      {isCollapsed ? <Icon icon={<Add />} size={24} /> : <Icon icon={<Minimize />} size={24} />}
+      {isOpened ? <Icon icon={<Minimize />} size={24} /> : <Icon icon={<Add />} size={24} />}
     </StyledButtonCollapse>
   );
 };
@@ -32,7 +32,7 @@ const StyledButtonCollapse = styled.button`
 
 ButtonCollapse.propTypes = {
   onClick: PropTypes.func.isRequired,
-  isCollapsed: PropTypes.bool
+  isOpened: PropTypes.bool
 };
 
 export default ButtonCollapse;

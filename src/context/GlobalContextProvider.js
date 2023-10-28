@@ -4,17 +4,17 @@ export const GlobalStateContext = React.createContext();
 export const GlobalDispatchContext = React.createContext();
 
 const initialState = {
-  collapsed: {}
+  opened: {}
 };
 
 function reducer(state, action) {
   switch (action.type) {
-    case 'TOGGLE_NAV_COLLAPSED':
+    case 'TOGGLE_NAV_OPENED':
       return {
         ...state,
-        collapsed: {
-          ...state.collapsed,
-          [action.url]: !state.collapsed[action.url]
+        opened: {
+          ...state.opened,
+          [action.url]: !state.opened[action.url]
         }
       };
     default:

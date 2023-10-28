@@ -7,8 +7,9 @@ import ButtonCollapse from '../ButtonCollapse';
 const NavItem = ({ item }) => {
   const state = useContext(GlobalStateContext);
   const dispatch = useContext(GlobalDispatchContext);
-  const isCollapsed = state.collapsed[item.url];
+  const isOpened = state.opened[item.url];
   const hasChildren = item.items && item.items.length > 0;
+  console.log(state)
   return (
     <StyledNavItem>
       <NavItemLink to={item.url} activeClassName="is-active">
@@ -17,12 +18,12 @@ const NavItem = ({ item }) => {
       {hasChildren && (
         <ButtonCollapse
           onClick={() => {
-            dispatch({ type: 'TOGGLE_NAV_COLLAPSED', url: item.url });
+            dispatch({ type: 'TOGGLE_NAV_OPENED', url: item.url });
           }}
-          isCollapsed={isCollapsed}
+          isOpened={isOpened}
         />
       )}
-      {hasChildren && !isCollapsed && (
+      {hasChildren && isOpened && (
         <NavItemChild>
           {item.items.map(child => (
             <StyledNavItem key={child.url}>
