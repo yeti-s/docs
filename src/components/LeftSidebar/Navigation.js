@@ -2,7 +2,6 @@ import styled from '@emotion/styled';
 import { graphql, useStaticQuery } from 'gatsby';
 import React, { useState } from 'react';
 import NavItem from './NavItem';
-import { useEffect } from 'react';
 
 /**
  * This File was inspired by https://github.com/hasura/gatsby-gitbook-starter
@@ -80,14 +79,6 @@ const calculateTreeData = (edges, sidebarConfig) => {
       }
       prevItems = tmp.items;
     }
-    // sort items alphabetically.
-    prevItems.forEach(item => {
-      item.items = item.items.sort(function(a, b) {
-        if (a.label < b.label) return -1;
-        if (a.label > b.label) return 1;
-        return 0;
-      });
-    });
     const index = prevItems.findIndex(({ label }) => label === parts[parts.length - 1]);
     accu.items.unshift(prevItems.splice(index, 1)[0]);
     return accu;
@@ -127,18 +118,23 @@ const Navigation = () => {
     return calculateTreeData(allMdx.edges, sidebarConfig);
   });
 
+  // sort items alphabetically.
+  const sortByTitle = (a, b) => {
+    let x = a.title.toLowerCase();
+    let y = b.title.toLowerCase();
+    if (x<y) return -1;
+    if (x>y) return 1;
+    return 0;
+  }
+
   return (
     <NavList>
       {
-        treeData.items.sort(function(a, b) {
-          let x = a.title.toLowerCase();
-          let y = b.title.toLowerCase();
-          if (x<y) return -1;
-          if (x>y) return 1;
-          return 0;
-        }).map(item => (
-          <NavItem key={item.url} item={item} />
-        ))
+        // treeData.items.map(item => {
+        treeData.items.sort(sortByTitle).map(item => {
+          item.items.sort(sortByTitle);
+          return <NavItem key={item.url} item={item} />
+        })
       }
     </NavList>
   );
