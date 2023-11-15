@@ -4,7 +4,11 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 const ListItem = ({ location, item }) => {
-  return <ListItemLink to={location.pathname + item.url}>{item.title}</ListItemLink>;
+  return (
+    <ListItemLink to={location.pathname + item.url}>
+      {'\u00A0\u00A0'.repeat(item.depth)+(item.index+1)+'.\u00A0'}{item.title}
+    </ListItemLink>
+  );
 };
 
 const ListItemLink = styled(Link)`

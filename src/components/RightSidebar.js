@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import mediaqueries from '../styles/media';
 import ListItem from './ListItem';
 
@@ -9,17 +9,18 @@ const RightSidebar = ({ tableOfContents, location }) => {
     if (!tableOfContents.items) {
       return [];
     }
-    const mappedLinks = [];
-    function mapLinks(items) {
-      items.forEach(item => {
-        mappedLinks.push(item);
-        if (item.items) {
-          mapLinks(item.items);
-        }
-      });
+    
+    const titles = [];
+    const getTitles = (items, depth) => {
+      items.forEach((item, index) => {
+        item.index = index
+        item.depth = depth
+        titles.push(item);
+        if (item.items) getTitles(item.items, depth+1);
+      })
     }
-    mapLinks(tableOfContents.items);
-    return mappedLinks;
+    getTitles(tableOfContents.items, 0);
+    return titles;
   });
 
   return (
