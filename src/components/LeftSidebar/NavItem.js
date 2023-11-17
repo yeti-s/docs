@@ -9,7 +9,7 @@ const NavItem = ({ item }) => {
   const dispatch = useContext(GlobalDispatchContext);
   const isOpened = state.opened[item.url];
   const hasChildren = item.items && item.items.length > 0;
-  console.log(state)
+
   return (
     <StyledNavItem>
       <NavItemLink to={item.url} activeClassName="is-active">
