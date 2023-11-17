@@ -1,0 +1,78 @@
+---
+title: 'Quantization'
+description: 'Quantization and Training of Neural Networks for Efficient Integer-Arithmetic-Only Inference'
+---
+
+# Paper
+[Quantization and Training of Neural Networks for Efficient Integer-Arithmetic-Only Inference]('https://arxiv.org/pdf/1712.05877.pdf') 논문을 바탕으로 작성하였습니다.
+
+## Introduction
+최근 SOTA를 달성하는 CNN 모델 구조는 복잡도와 연산 효율을 고려하지 않고 높은 정확도를 가지도록 발전해왔어요.
+이는 스마트폰, 드론과 같은 자원이 한정된 모바일 플랫폼에 적합하지 않아요.
+그래서 최소한의 정확도 하락으로 모델 사이즈와 추론 속도를 감소시키는 방법이 주목받고 있어요.
+
+간단하게 생각하면 이를 위해 두 가지 접근법이 있네요.
+1. MobileNet, SqueezeNet, ShuffleNet, 그리고 DenseNet과 같은 메모리, 연산 효율적인 모델 구조를 디자인 하는 방법.
+
+이 방법은 합리적인 측정 기준이 정해지지 않았어요.
+AlexNet, VGG, 그리고 GoogleNet과 같은 모델은 이미 적은 성능 향상을 위해 과도한 파라미터를 사용하기 때문에, 모델 사이즈를 줄이는 것은 어렵지 않습니다.
+이미 연산량과 정확도 사이 trade-off 관계를 가지는 MobileNet과 같은 모델을 quantization 하는 것이 의미있는 도전이겠죠?
+
+2. 모델의 weight, activation 등을 float32 연상에서 더 낮은 비트로 quantization 하는 방법.
+
+많은 quantization 접근 방법은 실제 하드웨어에서 효율적인 향상을 보이지는 않더라구요.
+weight만을 quantize하여 모델 사이즈를 줄이지만 연산 효율은 증가하지 않는다던가,
+곱셈을 bit shift 연산으로 할 수 있게 하지만 하드웨어에서 별다른 이점이 되지 않는다던가.
+특히 곱셈은 큰 bit의 연산을 수행할 때만 비용이 많이 든다.
+따라서 activation과 weight를 모두 quantization 하면 낮은 비트의 연산으로 곱셈을 피하지 않아도 된다.
+
+이 논문에서 MobileNet을 이용하여 위에서 언급한 내용들을 다루는 quantization 방법을 다루겠습니다.
+
+## Quantized Inference
+
+우리는 float32로 학습하고 integer만을 사용한 연산으로 추론하는 quantization 계획을 세울 것입니다.
+
+$$
+r = S(q-Z)
+$$
+
+실제값 $r$을 int8로 quantize한다고 생각합시다.
+여기서 $q$는 quantized된 값, $S$와 $Z$는 각각 scale, zero point로 quantization paramter입니다.
+우리는 각각의 tensor(activation, weight 등)에 대해서 각각의 quantization parameter를 사용할 거에요.
+
+우리는 NxN 형태의 행렬인 $r_1, r_2$의 곱 $r_3=r_1r_2$인 $r_3$를 위와 같은 식을 이용해 표현한다고 생각 해봅시다.
+${r_{\alpha}}^{(i,j)}$는 $r_\alpha$의 $i$행 $j$열이라 정의하고 식을 다시 정리 해보죠.
+
+$$
+{r_{\alpha}}^{(i,j)} = S_{\alpha}({q_{\alpha}}^{(i,j)}-Z_{\alpha})
+$$
+
+그렇다면 아래처럼 표현할 수 있겠죠?
+
+$$
+S_3({q_3}^{(i,j)}-Z_3) = \sum_{j=1}^{N}S_1({q_1}^{(i,j)}-Z_1)S_2({q_2}^{(j,k)}-Z_2)
+$$
+
+음 정리를 조금 해볼까요?
+
+$$
+{q_3}^{(i,j)} = Z_3+M\sum_{j=1}^{N}({q_1}^{(i,j)}-Z_1)({q_2}^{(j,k)}-Z_2), M:=\frac{S_1S_2}{S_3}
+$$
+
+여기서 우리는 경험적으로 M이 (0, 1)에 분포하는 것을 알 수 있어요.  
+`사실 이 부분이 처음에는 이해가 안되었는데 보통은 양자화 bit 범위보다 tensor의 범위가 더 작기 떄문에 scale 값이 1보다 작은 경우가 대부분이더라.`
+
+그렇다면 $[0.5)$ 범위인 fixed-point $M_0$에 대해 $M=2^{-n}M_0$로 표현을 해 볼게요.
+이제 우리는 bit shift 연산만으로 $M_0$를 $M$으로 만들 수 있게 되었어요. 
+
+
+
+
+
+
+##
+혹시 해결하셨나요? 전 S3와 Z3는 training할 때 output range를 통해 구하는 것으로 이해했습니다.
+해당 페이퍼 뒤쪽에 Learning quantization ranges 를 참조하시면 될 것 같습니다
+##
+
+
