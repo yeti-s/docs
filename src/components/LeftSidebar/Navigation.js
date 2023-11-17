@@ -31,25 +31,32 @@ const calculateTreeData = (edges, sidebarConfig) => {
         }
       }
     ) => {
-      const parts = slug.split('/');
       let { items: prevItems } = accu;
-      for (const part of parts.slice(1, -1)) {
-        let tmp = prevItems.find(({ label }) => label === part);
-        if (tmp) {
-          if (!tmp.items) {
-            tmp.items = [];
+      const parts = slug.split('/');
+      if (parts.length > 2 && parts[parts.length-1] === 'index')  // is index?
+      {
+        {
+          const existingItem = prevItems.find(({ label }) => label === parts[1]);
+          if (existingItem) {
+            existingItem.url = slug;
+            existingItem.title = title;
           }
-        } else {
-          tmp = { label: part, items: [] };
-          prevItems.push(tmp);
         }
-        prevItems = tmp.items;
       }
-      const existingItem = prevItems.find(({ label }) => label === parts[parts.length - 1]);
-      if (existingItem) {
-        existingItem.url = slug;
-        existingItem.title = title;
-      } else {
+      else {
+        for (const part of parts.slice(1, -1)) {
+          let tmp = prevItems.find(({ label }) => label === part);
+          if (tmp) {
+            if (!tmp.items) {
+              tmp.items = [];
+            }
+          } else {
+            tmp = { label: part, items: [] };
+            prevItems.push(tmp);
+          }
+          prevItems = tmp.items;
+        }
+
         prevItems.push({
           label: parts[parts.length - 1],
           url: slug,
