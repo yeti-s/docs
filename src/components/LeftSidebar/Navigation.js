@@ -7,89 +7,66 @@ import NavItem from './NavItem';
  * This File was inspired by https://github.com/hasura/gatsby-gitbook-starter
  */
 
-const calculateTreeData = (edges, sidebarConfig) => {
+// sort items alphabetically.
+const sortByTitle = (a, b) => {
+  if (a.title && b.title) {
+    let x = a.title.toLowerCase();
+    let y = b.title.toLowerCase();
+    if (x < y) return -1;
+    if (x > y) return 1;
+  }
+  return 0;
+}
+
+const createTree = (edges, sidebarConfig) => {
   const originalData = sidebarConfig.ignoreIndex
     ? edges.filter(
-        ({
-          node: {
-            fields: { slug }
-          }
-        }) => slug !== '/'
-      )
+      ({
+        node: {
+          fields: { slug }
+        }
+      }) => slug !== '/'
+    )
     : edges;
 
   if (originalData.length === 0) {
     return { items: [] };
   }
 
-  const tree = originalData.reduce(
-    (
-      accu,
-      {
-        node: {
-          fields: { slug, title }
-        }
-      }
-    ) => {
-      let { items: prevItems } = accu;
-      const parts = slug.split('/');
-      if (parts.length > 2 && parts[parts.length-1] === 'index')  // is index?
-      {
-        {
-          const existingItem = prevItems.find(({ label }) => label === parts[1]);
-          if (existingItem) {
-            existingItem.url = slug;
-            existingItem.title = title;
-          }
-        }
-      }
-      else {
-        for (const part of parts.slice(1, -1)) {
-          let tmp = prevItems.find(({ label }) => label === part);
-          if (tmp) {
-            if (!tmp.items) {
-              tmp.items = [];
-            }
-          } else {
-            tmp = { label: part, items: [] };
-            prevItems.push(tmp);
-          }
-          prevItems = tmp.items;
-        }
+  const tree = {}
 
-        prevItems.push({
-          label: parts[parts.length - 1],
-          url: slug,
-          items: [],
-          title
-        });
-      }
-      return accu;
-    },
-    { items: [] }
-  );
-  const forcedNavOrder = sidebarConfig.forcedNavOrder || [];
-  const tmp = [...forcedNavOrder];
-  tmp.reverse();
-  return tmp.reduce((accu, slug) => {
+  originalData.forEach(elem => {
+    const title = elem.node.fields.title;
+    const slug = elem.node.fields.slug;
+
     const parts = slug.split('/');
-    let { items: prevItems } = accu;
-    for (const part of parts.slice(1, -1)) {
-      let tmp = prevItems.find(({ label }) => label === part);
-      if (tmp) {
-        if (!tmp.items) {
-          tmp.items = [];
-        }
-      } else {
-        tmp = { label: part, items: [] };
-        prevItems.push(tmp);
-      }
-      prevItems = tmp.items;
+    const subject = parts[1];
+    if (!tree[subject]) tree[subject] = {items:[]};
+
+    // index file
+    if (parts[parts.length - 1] === "index") {
+      tree[subject].title = title;
+      tree[subject].url = slug;
     }
-    const index = prevItems.findIndex(({ label }) => label === parts[parts.length - 1]);
-    accu.items.unshift(prevItems.splice(index, 1)[0]);
-    return accu;
-  }, tree);
+    // sub content file
+    else {
+      tree[subject].items.push({
+        url: slug,
+        title: title
+      })
+    }
+  });
+  
+  // sort items
+  let no_children = [];
+  let has_children = [];
+  Object.values(tree).forEach(elem => {
+    elem.items.sort(sortByTitle)
+    if (elem.items.length == 0) no_children.push(elem);
+    else has_children.push(elem);
+  })
+
+  return no_children.concat(has_children);
 };
 
 const Navigation = () => {
@@ -121,26 +98,14 @@ const Navigation = () => {
   `);
   const { allSite, allMdx } = result;
   const { sidebarConfig } = allSite.edges[0].node.siteMetadata;
-  const [treeData] = useState(() => {
-    return calculateTreeData(allMdx.edges, sidebarConfig);
+  const [tree] = useState(() => {
+    return createTree(allMdx.edges, sidebarConfig);
   });
-
-  // sort items alphabetically.
-  const sortByTitle = (a, b) => {
-    let x = a.title.toLowerCase();
-    let y = b.title.toLowerCase();
-    if (x<y) return -1;
-    if (x>y) return 1;
-    return 0;
-  }
 
   return (
     <NavList>
       {
-        treeData.items.sort(sortByTitle).map(item => {
-          item.items.sort(sortByTitle);
-          return <NavItem key={item.url} item={item} />
-        })
+        tree.map(item => <NavItem key={item.url} item={item} />)
       }
     </NavList>
   );

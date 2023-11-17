@@ -8,7 +8,7 @@ const NavItem = ({ item }) => {
   const state = useContext(GlobalStateContext);
   const dispatch = useContext(GlobalDispatchContext);
   const isOpened = state.opened[item.url];
-  const hasChildren = item.items && item.items.length > 0;
+  const hasChildren = item.items.length > 0;
 
   return (
     <StyledNavItem>
