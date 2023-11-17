@@ -30,7 +30,7 @@ const createTree = (edges, sidebarConfig) => {
     : edges;
 
   if (originalData.length === 0) {
-    return { items: [] };
+    return [];
   }
 
   const tree = {}
