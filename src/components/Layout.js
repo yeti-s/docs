@@ -52,7 +52,7 @@ const SiteContent = styled.main`
     transform: translateX(0);
     opacity: 1;
     padding: 7rem 3rem 3rem;
-    max-width: 50rem;
+    max-width: 70rem;
   `};
 `;
 
