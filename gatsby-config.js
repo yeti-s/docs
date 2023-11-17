@@ -35,7 +35,10 @@ module.exports = {
             }
           },
           {
-            resolve: `gatsby-remark-copy-relative-linked-files`,
+            resolve: `gatsby-remark-copy-linked-files`,
+            options: {
+              destinationDir: `content`
+            }
           },
           {
             resolve: `gatsby-remark-autolink-headers`,
