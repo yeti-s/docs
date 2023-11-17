@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `Yeti Docs`,
+    title: `yeti-docs`,
     name: `yeti`,
     siteUrl: `https://yeti-s.github.io/`,
     description: `This is my description that will be used in the meta tags and important for search results`,
