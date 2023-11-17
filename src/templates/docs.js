@@ -6,6 +6,8 @@ import React from 'react';
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 import 'katex/dist/katex.min.css'
+import Code from '../components/Code';
+import { MDXProvider } from '@mdx-js/react';
 
 const DocsTemplate = ({ data, location }) => {
   const { mdx } = data;
@@ -14,7 +16,9 @@ const DocsTemplate = ({ data, location }) => {
     <Layout tableOfContents={mdx.tableOfContents} location={location}>
       <SEO title={mdx.frontmatter.title} description={mdx.frontmatter.description} />
       <Heading>{mdx.frontmatter.title}</Heading>
-      <MDXRenderer>{mdx.body}</MDXRenderer>
+      <MDXProvider components={{ pre: Code }}>
+        <MDXRenderer>{mdx.body}</MDXRenderer>
+      </MDXProvider>
     </Layout>
   );
 };
