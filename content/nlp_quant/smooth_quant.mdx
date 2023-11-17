@@ -4,7 +4,7 @@ description: 'Accurate and Efficient Post-Training Quantization for Large Langua
 ---
 
 # Paper
-[SmoothQuant: Accurate and Efficient Post-Training Quantization for Large Language Models]('https://arxiv.org/abs/2211.10438') 논문을 바탕으로 작성하였습니다.
+[SmoothQuant: Accurate and Efficient Post-Training Quantization for Large Language Models](https://arxiv.org/abs/2211.10438) 논문을 바탕으로 작성하였습니다.
 
 ## Introduction
 Large-scale language model(LLM)은 다양한 분야에서 뛰어난 성과를 내고 있다.
@@ -14,8 +14,8 @@ Large-scale language model(LLM)은 다양한 분야에서 뛰어난 성과를 �
 
 그러나 CNN모델 또는 BERT와 같은 작은 transformer 모델과 달리 LLM의 activation을 quantization하는 것은 쉽지 않다.
 6.7B 이상의 LLM 모델은 activation에 큰 규모의 시스템적 outliers들이 등장해서 quantization error를 증가시키고 정확도를 감소시킨다.
-[**ZeroQuant**]('https://arxiv.org/pdf/2206.01861.pdf')는 GPT-3-350M, GPT-J-6B 모델에서 좋은 성능을 냈지만 OPT-175B에서는 정확도를 유지하지 못했다.
-[**LLM.int8**]('https://arxiv.org/pdf/2208.07339.pdf')는 하드웨어 가속기에 효과적으로 decomposition을 구현하기 어렵다.
+[**ZeroQuant**](https://arxiv.org/pdf/2206.01861.pdf)는 GPT-3-350M, GPT-J-6B 모델에서 좋은 성능을 냈지만 OPT-175B에서는 정확도를 유지하지 못했다.
+[**LLM.int8**](https://arxiv.org/pdf/2208.07339.pdf)는 하드웨어 가속기에 효과적으로 decomposition을 구현하기 어렵다.
 그러므로 효과적, 하드웨어 친화적, 그리고 훈련이 필요 없는 quantization 방법이 필요하다.
 
 `BERT와 같은 작은 transformer는 quantization이 쉬운 것일까?`  
