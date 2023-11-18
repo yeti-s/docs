@@ -3,7 +3,7 @@ export default {
   background: '#fff',
   primary: '#e63b19',
   secondary: '#c70d3a',
-  sidebar: '#eee',
+  sidebar: 'rgba(243, 243, 243, 0.38)',
   borderColor: 'rgba(0, 0, 0, 0.15)',
   modes: {
     dark: {

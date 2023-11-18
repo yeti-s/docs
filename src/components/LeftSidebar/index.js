@@ -32,6 +32,8 @@ const LeftSidebarNav = styled.nav`
   width: 16rem;
   height: 100%;
   padding: 1rem 0;
+  border-right: 0.1rem solid;
+  border-right-color: ${p => p.theme.colors.borderColor};
   background: ${p => p.theme.colors.sidebar};
   transition: 0.25s var(--ease-in-out-quad);
   transform: ${p => (p.navOpen ? `translateX(16rem)` : null)};
