@@ -13,10 +13,12 @@ const ListItem = ({ location, item }) => {
 
 const ListItemLink = styled(Link)`
   display: inline-block;
-  padding: 0.2rem 0;
   width: 100%;
   color: ${p => p.theme.colors.text};
   text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   transition: color ${p => p.theme.transition};
   &:hover,
   &:focus {
