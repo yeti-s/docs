@@ -27,9 +27,9 @@ const NavItem = ({ item }) => {
         <NavItemChild>
           {item.items.map(child => (
             <StyledNavItem key={child.url}>
-              <NavItemLink to={child.url} activeClassName="is-active">
+              <NavSubItemLink to={child.url} activeClassName="is-active">
                 {child.title}
-              </NavItemLink>
+              </NavSubItemLink>
             </StyledNavItem>
           ))}
         </NavItemChild>
@@ -52,8 +52,24 @@ const NavItemLink = styled(Link)`
   padding: 0.5rem 1.8rem 0.5rem 1.2rem;
   width: 100%;
   color: ${p => p.theme.colors.text};
-  font-weight: 600;
+  font-weight: bold;
   text-decoration: none;
+  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,Hiragino Sans GB,Microsoft YaHei,Helvetica Neue,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+  transition: color ${p => p.theme.transition};
+  &:hover,
+  &:focus,
+  &.is-active {
+    color: ${p => p.theme.colors.primary};
+  }
+`;
+
+const NavSubItemLink = styled(Link)`
+  display: block;
+  padding: 0.5rem 1.8rem 0.5rem 1.2rem;
+  width: 100%;
+  color: ${p => p.theme.colors.text};
+  text-decoration: none;
+  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,Hiragino Sans GB,Microsoft YaHei,Helvetica Neue,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
   transition: color ${p => p.theme.transition};
   &:hover,
   &:focus,
@@ -65,7 +81,6 @@ const NavItemLink = styled(Link)`
 const NavItemChild = styled.ul`
   margin: 0.5rem 0 0.5rem 1.2rem;
   padding: 0;
-  border-left: 1px solid ${p => p.theme.colors.text};
   list-style: none;
   & > li {
     margin: 0;
