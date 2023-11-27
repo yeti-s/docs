@@ -1,5 +1,5 @@
 import { useColorMode } from 'theme-ui';
-import colors from '../gatsby-plugin-theme-ui/colors';
+import colors from '@src/gatsby-plugin-theme-ui/colors';
 
 const customColors = Object.keys(colors.modes);
 const modes = ['light', ...customColors];

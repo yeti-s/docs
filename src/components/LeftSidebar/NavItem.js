@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 import { Link } from 'gatsby';
 import React, { useContext } from 'react';
-import { GlobalDispatchContext, GlobalStateContext } from '../../context/GlobalContextProvider';
-import ButtonCollapse from '../ButtonCollapse';
+import { GlobalDispatchContext, GlobalStateContext } from '@src/context/GlobalContextProvider';
+import ButtonCollapse from '@src/components/ButtonCollapse';
 
 const NavItem = ({ item }) => {
   const state = useContext(GlobalStateContext);

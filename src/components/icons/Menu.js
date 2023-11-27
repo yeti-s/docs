@@ -1,5 +1,5 @@
 import React from 'react';
-import SVG from './SVG';
+import SVG from '@src/components/icons/SVG';
 
 const Menu = () => (
   <SVG viewBox="0 0 24 24">

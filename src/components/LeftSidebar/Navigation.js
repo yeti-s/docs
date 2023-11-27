@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { graphql, useStaticQuery } from 'gatsby';
 import React, { useState } from 'react';
-import NavItem from './NavItem';
+import NavItem from '@src/components/LeftSidebar/NavItem';
 
 /**
  * This File was inspired by https://github.com/hasura/gatsby-gitbook-starter

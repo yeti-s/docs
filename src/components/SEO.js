@@ -2,7 +2,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Helmet from 'react-helmet';
-import siteImage from '../site-image.jpg';
+import siteImage from '@src/site-image.jpg';
 
 /**
  * This react helmt code is adapted from

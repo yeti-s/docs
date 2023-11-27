@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { Link } from 'gatsby';
 import React from 'react';
-import Logo from '../logo.mdx';
+import Logo from '@src/logo.mdx';
 
 const LogoWrapper = () => (
   <StyledLogoWrapper>

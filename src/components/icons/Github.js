@@ -1,5 +1,5 @@
 import React from 'react';
-import SVG from './SVG';
+import SVG from '@src/components/icons/SVG';
 
 const Github = () => (
   <SVG viewBox="0 0 14 14">

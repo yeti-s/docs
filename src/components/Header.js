@@ -1,13 +1,13 @@
 import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
 import React from 'react';
-import useCycleColor from '../hooks/useCycleColor';
-import mediaqueries from '../styles/media';
-import ColorToggle from './icons/ColorToggle';
-import IconButton from './icons/IconButton';
-import Menu from './icons/Menu';
-import LogoWrapper from './LogoWrapper';
-import SocialIcons from './SocialIcons';
+import useCycleColor from '@src/hooks/useCycleColor';
+import mediaqueries from '@src/styles/media';
+import ColorToggle from '@src/components/icons/ColorToggle';
+import IconButton from '@src/components/icons/IconButton';
+import Menu from '@src/components/icons/Menu';
+import LogoWrapper from '@src/components/LogoWrapper';
+import SocialIcons from '@src/components/SocialIcons';
 
 const Header = ({ navOpen, setNavOpen }) => {
   const { cycleColorMode } = useCycleColor();

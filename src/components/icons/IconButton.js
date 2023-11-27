@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import React from 'react';
-import Icon from './Icon';
+import Icon from '@src/components/icons/Icon';
 
 const IconButton = ({ onClick, label, icon, size }) => {
   return (

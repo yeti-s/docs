@@ -3,10 +3,10 @@ import { graphql } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Layout from '../components/Layout';
-import SEO from '../components/SEO';
+import Layout from '@src/components/Layout';
+import SEO from '@src/components/SEO';
 import 'katex/dist/katex.min.css'
-import Code from '../components/Code';
+import Code from '@src/components/Code';
 import { MDXProvider } from '@mdx-js/react';
 
 const DocsTemplate = ({ data, location }) => {

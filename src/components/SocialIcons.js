@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 import { graphql, useStaticQuery } from 'gatsby';
 import React from 'react';
-import Github from './icons/Github';
-import Icon from './icons/Icon';
-import Twitter from './icons/Twitter';
+import Github from '@src/components/icons/Github';
+import Icon from '@src/components/icons/Icon';
+import Twitter from '@src/components/icons/Twitter';
 
 const socialQuery = graphql`
   {

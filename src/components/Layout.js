@@ -3,11 +3,11 @@ import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { Styled } from 'theme-ui';
-import { globalStyles } from '../styles';
-import mediaqueries from '../styles/media';
-import Header from './Header';
-import LeftSidebar from './LeftSidebar';
-import RightSidebar from './RightSidebar';
+import { globalStyles } from '@src/styles';
+import mediaqueries from '@src/styles/media';
+import Header from '@src/components/Header';
+import LeftSidebar from '@src/components/LeftSidebar';
+import RightSidebar from '@src/components/RightSidebar';
 
 const Layout = ({ children, tableOfContents, location }) => {
   const [navOpen, setNavOpen] = useState(false);

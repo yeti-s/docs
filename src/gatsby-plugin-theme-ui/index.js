@@ -1,6 +1,6 @@
 import nightOwl from '@theme-ui/prism/presets/night-owl.json';
-import colors from './colors';
-import headings from './headings';
+import colors from '@src/gatsby-plugin-theme-ui/colors';
+import headings from '@src/gatsby-plugin-theme-ui/headings';
 
 const transition = '0.2s ease-out';
 const systemFonts =

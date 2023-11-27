@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
-import mediaqueries from '../styles/media';
-import ListItem from './ListItem';
+import mediaqueries from '@src/styles/media';
+import ListItem from '@src/components/ListItem';
 
 const RightSidebar = ({ tableOfContents, location }) => {
   const [listItems] = useState(() => {
