@@ -17,6 +17,16 @@ module.exports = {
   },
   plugins: [
     {
+      resolve: 'gatsby-plugin-alias-imports',
+      options: {
+        alias: {
+          "@src": "src",
+          "@content": "content"
+        },
+        extensions:["js", "jsx", "ts", "tsx"]
+      }
+    },
+    {
       resolve: 'gatsby-source-filesystem',
       options: {
         path: `content`,
