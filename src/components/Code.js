@@ -47,13 +47,18 @@ export default (props) => {
         }
     `;
 
+    const codeNumList = ["cpp", "js", "javascript", "python", "java", "c"]
+
     return (
         <Highlight {...defaultProps} theme={theme} code={code} language={language}>
             {({ className, style, tokens, getLineProps, getTokenProps }) => (
                 <Pre className={className} style={style}>
                     {tokens.map((line, i) => (
                         <div {...getLineProps({ line, key: i })}>
-                            <LineNoWrapper><LineNo>{i + 1}</LineNo></LineNoWrapper>
+                        {   codeNumList.includes(language) ?
+                            <LineNoWrapper><LineNo>{i + 1}</LineNo></LineNoWrapper> : <></>
+                        }
+                            
                             {line.map((token, key) => <span {...getTokenProps({ token, key })} />)}
                         </div>
                     ))}
