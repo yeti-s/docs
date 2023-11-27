@@ -141,8 +141,65 @@ quantization error를 최소화 하기 위해 bias는 32-bit로 quantize 해줄 
 하나는 값을 8-bit에 맞게 scale down을 하는 것이고요,
 다른 하나는 uint8로 cast down하고 activation function을 적용하여 8-bit output을 만드는 거에요.
 
-down-scaling은 식 7번을 이용하여 [0, 255]범위에 맞도록 값을 조절할 수 있어요.
+down-scaling은 식 7번을 이용하여 [0, 255]범위에 꽉 들어 맞도록 값을 조절해야 합니다.
 `실제로 적용해봐야 이해가 될 듯`
+
+ReLU, ReLU6와 같은 activation function은 거의 clamp를 하지 않기 때문에 layer와 합칠 필요가 없어요.
+해야할 일은 down-scaling된 값을 최종적으로 uint8로 cast down 해주어 최종적으로 uint8의 결과를 내면됩니다.  
+`이 부분도 구현하며 알아보자!`
+
+## Training with simulated quantization
+
+일반적으로 FP로 학습을 진행한 후 결과 weight에 대해 quantize를 진행하는 접근을 합니다.
+(일부는 quantization 후 fine-tuning을 하기도 함!)
+이러한 방법은 큰 모델에 대해서 상당한 정확성을 가지지만 작은 모델에서 정확도가 크게 하락해요.
+그 문제점은 아래와 같아요.
+
+* 채널간 weight의 범위가 너무 큰 차이를 가지는 경우  
+* outlier weight가 나머지 weight에 대한 정확도를 크게 하락시키는 경우  
+
+동일한 layer의 모든 채널에 대해 동일한 resolution으로 quantize를 하기에 위와 같은 상황에서 정확도 하락이 발생하는 거죠.
+그래서 우리는 backpropagation은 기존과 동일하게 FP로 조절되지만 forward propagation에서 quantization의 영향을 시뮬레이션 하는 접근을 사용할 것입니다.
+forward를 inference시와 동일하게 하지만 FP의 형태로 구현한다는 소리입니다!  
+`이것이 fake quantization을 말하는 것인듯!`
+
+weight는 input이 들어오기 전부터 이미 quantized된 상태에요.
+만약 batch norm이 사용되는 레이어라면, weight를 quantize하기 전에 batch norm의 파라미터를 weight와 합칠 것입니다.  
+
+activation은 추론시에 quantized 됩니다. layer의 output에 activation function이 적용된 후 와 같이 말이죠!
+
+$$
+\text{clamp}(r; a, b) := \min(\max(x, a), b)
+$$
+$$
+s(a, b, n) := \frac{b - a}{n - 1}
+$$
+$$
+q(r; a, b, n) := \left\lfloor \frac{\text{clamp}(r; a, b) - a}{s(a, b, n)} \right\rceil s(a, b, n) + a \tag{12}
+$$
+
+$r$은 실제 값, $[a;b]$는 quantization range, $\left\lfloor \cdot \right\rceil$는 반올림, 그리고 $n=2^N=256$ 입니다. (8bit quantization)
+
+
+### Learning quantization ranges
+
+quantization range는 weight와 activation에 따라 다르게 다룰 거예요.
+
+weight에서 $a := \min w, b := \max w$ 입니다. 
+이때 우리는 -128을 사용하지 않는 $[-127, 127]$ 범위로만 사용할 거예요.
+그 이유는 뒤에서 설명하겠습니다.
+
+activation은 network에 따라 다르기 때문에, training 동안에 그 범위를 수집할 거예요.
+그리고 exponential moving averages (EMA)를 사용하여 집계합니다.
+물론 훈련 초반에는 범위가 급격하게 변하기 때문에, 안정적인 단계에 들어갈 때 까지 activation quantization을 사용하지 않을 거예요.
+
+우리는 quantization을 진행하면 값을 가장 가까운 숫자에 맵핑하는 방식으로 진행하게 될 텐데,
+0은 값이 없음 등과 같은 특별한 의미를 가지는 친구이기 때문에 정확하게 표현해줄 필요가 있어요.
+그래서 수집한 [a; b]의 범위를 0.0이 어떠한 값에 근사되어 맵핑하는 것이 아닌, 정확하게 그 값을 가지도록 조정해줄 것입니다. 
+$$
+S = s(a, b, n), \qquad Z = z(a, b, n) \tag{13}
+$$
+
 
 
 
@@ -151,4 +208,7 @@ down-scaling은 식 7번을 이용하여 [0, 255]범위에 맞도록 값을 조�
 해당 페이퍼 뒤쪽에 Learning quantization ranges 를 참조하시면 될 것 같습니다
 ##
 
+
+
+# Implement
 
