@@ -8,10 +8,10 @@ const createPages: GatsbyNode["createPages"] = async ({ graphql, actions, report
     {
         allMdx {
             nodes {
-            id
-            internal {
-                contentFilePath
-            }
+                id
+                internal {
+                    contentFilePath
+                }
             }
         }
     }`);
@@ -21,26 +21,20 @@ const createPages: GatsbyNode["createPages"] = async ({ graphql, actions, report
         return;
     }
 
-    // actions.createPage({
-    //     path: '93413a95-e915-5022-9a23-3f979f58ad11',
-    //     component: `${MDXTemplate}?__contentFilePath=/static/24b73280965cf7f2a22e655b96a7f610/index.mdx`,
-    //     context: {
-    //         id: '93413a95-e915-5022-9a23-3f979f58ad11'
-    //     }
-    // })
 
     request.data?.allMdx.nodes.forEach((node) => {
+        const relativePath = node.internal.contentFilePath?.split("content/")[1];
+        const path = relativePath === "index.mdx" ? '/' : node.id;
         actions.createPage({
-            path: node.id,
+            path: path,
             component: `${MDXTemplate}?__contentFilePath=${node.internal.contentFilePath}`,
             context: {
                 id: node.id
             }
         })
     })
-      
-
 }
+
 
 const onCreateWebpackConfig: GatsbyNode["onCreateWebpackConfig"] = ({actions}) => {
     actions.setWebpackConfig({

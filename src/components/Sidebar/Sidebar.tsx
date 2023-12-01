@@ -1,13 +1,20 @@
 import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
 import React from 'react';
+import Navigation from '@src/components/Sidebar/Navigation';
 import mediaqueries from '@src/styles/media';
-import Navigation from '@src/components/LeftSidebar/Navigation';
+import { useTheme, Theme } from '@emotion/react';
 
-const LeftSidebar = ({ navOpen }) => {
+type Prpos = {
+    navOpen: boolean
+}
+
+const LeftSidebar = ({navOpen}: Prpos) => {
+  const theme = useTheme();
+  
   return (
     <LeftSidebarWrapper>
-      <LeftSidebarNav navOpen={navOpen}>
+      <LeftSidebarNav theme={theme} navOpen={navOpen}>
         <Navigation />
       </LeftSidebarNav>
     </LeftSidebarWrapper>
@@ -23,7 +30,7 @@ const LeftSidebarWrapper = styled.aside`
   `};
 `;
 
-const LeftSidebarNav = styled.nav`
+const LeftSidebarNav = styled.nav<{theme:Theme, navOpen:boolean}>`
   position: fixed;
   top: 0;
   bottom: 0;
@@ -33,8 +40,9 @@ const LeftSidebarNav = styled.nav`
   height: 100%;
   padding: 1rem 0;
   border-right: 0.1rem solid;
-  border-right-color: ${p => p.theme.colors.borderColor};
-  background: ${p => p.theme.colors.sidebar};
+  border-right-color: ${p => p.theme.borderColor};
+  
+  background: ${p => p.theme.sidebar};
   transition: 0.25s var(--ease-in-out-quad);
   transform: ${p => (p.navOpen ? `translateX(16rem)` : null)};
   ${mediaqueries.desktop_up`

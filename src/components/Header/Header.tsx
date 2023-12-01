@@ -1,20 +1,33 @@
 import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
-import React from 'react';
-import useCycleColor from '@src/hooks/useCycleColor';
+import React, { Dispatch, SetStateAction, useContext } from 'react';
+import { GlobalStateContext, GlobalDispatchContext } from '@src/context/ContextProvier';
 import mediaqueries from '@src/styles/media';
-import ColorToggle from '@src/components/icons/ColorToggle';
-import IconButton from '@src/components/icons/IconButton';
-import Menu from '@src/components/icons/Menu';
-import LogoWrapper from '@src/components/LogoWrapper';
-import SocialIcons from '@src/components/SocialIcons';
 
-const Header = ({ navOpen, setNavOpen }) => {
-  const { cycleColorMode } = useCycleColor();
+import LogoWrapper from '@src/components/Header/LogoWrapper';
+import SocialIcons from '@src/components/Header/SocialIcons';
+import { useTheme, Theme } from '@emotion/react';
+import Icon from '../atoms/Icon';
+import { LightMode, DarkMode } from '@mui/icons-material';
+
+type Props = {
+  navOpen: boolean
+  setNavOpen: Dispatch<SetStateAction<boolean>>
+}
+
+const Header = ({ navOpen, setNavOpen }: Props) => {
+  const theme = useTheme();
+  const isDarkMode = useContext(GlobalStateContext).isDarkMode;
+  const dispatch = useContext(GlobalDispatchContext);
+  const changeTheme = () => {
+    if (dispatch) dispatch({ type: 'TOGGLE_THEME' })
+  }
+
   return (
-    <StyledHeader navOpen={navOpen}>
+    <StyledHeader theme={theme} navOpen={navOpen}>
       <HeaderSection>
         <NavIconButton>
+          {/*             
           <IconButton
             label="Open Navigation"
             icon={<Menu />}
@@ -22,32 +35,33 @@ const Header = ({ navOpen, setNavOpen }) => {
             onClick={() => {
               setNavOpen(!navOpen);
             }}
-          />
+          /> */}
         </NavIconButton>
         <LogoWrapper />
       </HeaderSection>
       <HeaderSection>
         <SocialIcons />
-        <IconButton
+        <div onClick={changeTheme}><Icon icon={isDarkMode ? <DarkMode /> : <LightMode />} /></div>
+        {/* <IconButton
           label="Change Theme Color"
           icon={<ColorToggle />}
           size={30}
-          onClick={cycleColorMode}
-        />
+        //   onClick={cycleColorMode}
+        /> */}
       </HeaderSection>
     </StyledHeader>
   );
 };
 
-const StyledHeader = styled.header`
+const StyledHeader = styled.header<{ theme: Theme, navOpen: boolean }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 1rem;
   z-index: 5;
-  background: ${p => p.theme.colors.background};
+  background: ${p => p.theme.background};
   transition: all 0.25s var(--ease-in-out-quad);
-  border-bottom: 1px solid ${p => p.theme.colors.borderColor};
+  border-bottom: 1px solid ${p => p.theme.borderColor};
   transform: ${p => (p.navOpen ? `translateX(16rem)` : null)};
   ${mediaqueries.desktop_up`
     position: fixed;

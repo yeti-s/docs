@@ -1,11 +1,13 @@
-import { css } from '@emotion/core';
-import theme from '@src/gatsby-plugin-theme-ui';
+import { css } from '@emotion/react';
+import {theme} from '@src/theme/theme';
 
 /**
  * This file was inspired by https://github.com/narative/gatsby-theme-novela
  */
 
-const toEm = size => `${size / 16}em`;
+const toEm = (size:number) => `${size / 16}em`;
+
+export type MediaQueries = {[label: string]: any};
 
 /**
  * All breakpoints can be found inside of theme.breakpoints.
@@ -19,18 +21,18 @@ const toEm = size => `${size / 16}em`;
  *    ${mediaqueries.tablet_up` width: 200px; `};
  */
 
-const mediaqueries = theme.breakpoints.reduce(
+const mediaqueries:MediaQueries = theme.breakpoints.reduce(
   (acc, [label, size], i) => ({
     ...acc,
     // max-width media query e.g. mediaqueries.desktop
-    [label]: (...args) => css`
+    [label]: (...args: any) => css`
       @media (max-width: ${toEm(size)}) {
         ${css(...args)};
       }
     `,
     // min-width media query e.g. mediaqueries.desktop_up
     // This is the breakpoint prior's size +1
-    [`${label}_up`]: (...args) => css`
+    [`${label}_up`]: (...args: any) => css`
       @media (min-width: ${toEm(theme.breakpoints[i - 1][1] + 1)}) {
         ${css(...args)};
       }

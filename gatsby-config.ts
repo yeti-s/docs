@@ -1,9 +1,18 @@
-import type { GatsbyConfig } from "gatsby"
+import type { GatsbyConfig } from "gatsby";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
 
 const config: GatsbyConfig = {
   siteMetadata: {
     title: 'yeti-docs',
     siteUrl: `https://yeti-s.github.io/`,
+    description: `This is my description that will be used in the meta tags and important for search results`,
+    social: [
+      {
+        name: `github`,
+        url: `https://github.com/yeti-s`
+      }
+    ]
   },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
   // If you use VSCode you can also use the GraphQL plugin
@@ -28,7 +37,11 @@ const config: GatsbyConfig = {
             }
           },
           `gatsby-remark-embed-video`
-        ]
+        ],
+        mdxOptions: {
+          remarkPlugins: [remarkMath],
+          rehypePlugins: [rehypeKatex]
+        }
       }
     },
     {
@@ -38,6 +51,8 @@ const config: GatsbyConfig = {
         path: './content'
       }
     },
+    `gatsby-plugin-sharp`,
+    `gatsby-plugin-emotion`
   ],
 }
 

@@ -1933,24 +1933,52 @@ type SitePluginSortInput = {
 type SiteSiteMetadata = {
   readonly description: Maybe<Scalars['String']>;
   readonly siteUrl: Maybe<Scalars['String']>;
+  readonly social: Maybe<ReadonlyArray<Maybe<SiteSiteMetadataSocial>>>;
   readonly title: Maybe<Scalars['String']>;
 };
 
 type SiteSiteMetadataFieldSelector = {
   readonly description: InputMaybe<FieldSelectorEnum>;
   readonly siteUrl: InputMaybe<FieldSelectorEnum>;
+  readonly social: InputMaybe<SiteSiteMetadataSocialFieldSelector>;
   readonly title: InputMaybe<FieldSelectorEnum>;
 };
 
 type SiteSiteMetadataFilterInput = {
   readonly description: InputMaybe<StringQueryOperatorInput>;
   readonly siteUrl: InputMaybe<StringQueryOperatorInput>;
+  readonly social: InputMaybe<SiteSiteMetadataSocialFilterListInput>;
   readonly title: InputMaybe<StringQueryOperatorInput>;
+};
+
+type SiteSiteMetadataSocial = {
+  readonly name: Maybe<Scalars['String']>;
+  readonly url: Maybe<Scalars['String']>;
+};
+
+type SiteSiteMetadataSocialFieldSelector = {
+  readonly name: InputMaybe<FieldSelectorEnum>;
+  readonly url: InputMaybe<FieldSelectorEnum>;
+};
+
+type SiteSiteMetadataSocialFilterInput = {
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly url: InputMaybe<StringQueryOperatorInput>;
+};
+
+type SiteSiteMetadataSocialFilterListInput = {
+  readonly elemMatch: InputMaybe<SiteSiteMetadataSocialFilterInput>;
+};
+
+type SiteSiteMetadataSocialSortInput = {
+  readonly name: InputMaybe<SortOrderEnum>;
+  readonly url: InputMaybe<SortOrderEnum>;
 };
 
 type SiteSiteMetadataSortInput = {
   readonly description: InputMaybe<SortOrderEnum>;
   readonly siteUrl: InputMaybe<SortOrderEnum>;
+  readonly social: InputMaybe<SiteSiteMetadataSocialSortInput>;
   readonly title: InputMaybe<SortOrderEnum>;
 };
 
