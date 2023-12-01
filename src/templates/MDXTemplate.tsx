@@ -7,6 +7,7 @@ import 'katex/dist/katex.min.css'
 import styled from "@emotion/styled";
 import mediaqueries from "@src/styles/media";
 import ContentTables from "@src/components/TableOfContent/TableOfContent";
+import CodeBlock from "@src/components/mdx/CodeBlock";
 
 type Item = {
     url:string,
@@ -37,7 +38,9 @@ const MDXTemplate = ({ data: { mdx }, children }: PageProps<QueryProps>) => {
         <Layout>
             <SiteContentWrapper>
                 <SiteContent navOpen={false}>
-                    <MDXProvider>
+                    <MDXProvider components={{
+                        pre: CodeBlock
+                    }}>
                         {children}
                     </MDXProvider>
                 </SiteContent>
