@@ -62,10 +62,6 @@ const RightSidebarWrapper = styled.aside`
   display: block;
   font-size: 0.75rem;
   font-weight: 600;
-  width: 0;
-  @media (min-width: 1280px) {
-    width: 16rem;
-  }
 `;
 
 const RightSidebarNav = styled.nav`

@@ -11,6 +11,10 @@ const config: GatsbyConfig = {
       {
         name: `github`,
         url: `https://github.com/yeti-s`
+      },
+      {
+        name: 'instagram',
+        url: `/`
       }
     ]
   },

@@ -56,7 +56,7 @@ const GlobalStyle = () => {
     }
 
     aside {
-      transition: all 0.25s var(--ease-in-out-quad);
+      transition: margin 0.25s var(--ease-in-out-quad);
     }
 
     /* https://github.com/gatsbyjs/gatsby/issues/15486 */
@@ -117,17 +117,6 @@ const GlobalStyle = () => {
     blockquote {
       margin: 0;
       border-left: 0.25em solid var(--blockquote-background-color);
-    }
-
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 1rem;
-      z-index: 5;
-      background: var(--background-color);
-      border-bottom: 1px solid var(--border-color);
-      height: 4.1rem;
     }
 
     pre {

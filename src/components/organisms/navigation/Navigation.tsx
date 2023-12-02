@@ -77,22 +77,7 @@ const createTree = (nodes: Array<Node>): Array<Item> => {
 };
 
 const Navigation = () => {
-    const result: QueryProps = useStaticQuery(graphql`
-        query {
-            allMdx {
-            nodes {
-                id
-                frontmatter {
-                title
-                order
-                }
-                internal {
-                contentFilePath
-                }
-            }
-            }
-        }
-    `);
+    const result: QueryProps = useStaticQuery(query);
     const { allMdx } = result;
     const [tree] = useState(() => createTree(allMdx.nodes));
 
@@ -116,6 +101,23 @@ const Navigation = () => {
         </NavList>
     );
 };
+
+const query = graphql`
+query {
+    allMdx {
+        nodes {
+            id
+            frontmatter {
+                title
+                order
+            }
+            internal {
+                contentFilePath
+            }
+        }
+    }
+}
+`;
 
 const NavList = styled.ul`
   margin: 0;

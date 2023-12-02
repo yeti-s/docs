@@ -4,11 +4,13 @@ import styled from "@emotion/styled";
 import Layout from "@src/Layout";
 import Navigation from "@src/components/organisms/navigation/Navigation";
 import ContentTables from "@src/components/TableOfContent/TableOfContent";
-import Header from "@src/components/Header/Header";
+import Header from "@src/components/organisms/header/Header";
 
 import type { PageProps } from "gatsby";
 import { graphql } from "gatsby";
 import { MDXProvider } from "@mdx-js/react";
+import { useRecoilValue } from "recoil";
+import { createAtom, TOGGLE_WIDE, TOGGLE_NAV } from "@src/context/atoms";
 import 'katex/dist/katex.min.css'
 
 /* ---custom MDX components--- */
@@ -20,6 +22,7 @@ import List from "@src/components/mdx/List";
 import UnorderedList from "@src/components/mdx/UnorderedList";
 import CodeBlock from "@src/components/mdx/CodeBlock";
 import Code from "@src/components/mdx/Code";
+
 
 
 
@@ -48,17 +51,20 @@ type QueryProps = {
 
 const MainTemplate = ({ data: { mdx }, children }: PageProps<QueryProps>) => {
 
+    const isWide = useRecoilValue(createAtom(TOGGLE_WIDE, false));
+    const isNavOpened = useRecoilValue(createAtom(TOGGLE_NAV, false));
+
     return (
         <Layout>
             <HeaderInterface>
-                <Header navOpen={true} setNavOpen={()=>{}}/>
+                <Header/>
             </HeaderInterface>
             <BodyInterface>
-                <NavigationInterface className="navigation">
+                <NavigationInterface className="navigation" isNavOpened={isNavOpened}>
                     <Navigation/>
                 </NavigationInterface>
-                <ContentInterface>
-                    <ContentWrapper>
+                <ContentInterface isNavOpened={isNavOpened}>
+                    <ContentWrapper isWide={isWide}>
                         <MDXProvider components={{
                             p: P,
                             h1: H1,
@@ -99,7 +105,13 @@ query($id: String!) {
   }
 }`;
 
-const HeaderInterface = styled.header<{navOpen?: boolean }>`
+const HeaderInterface = styled.div`
+    display: flex;
+    0.6rem 2rem 0.6rem 0.6rem
+    background: var(--background-color);
+    border-bottom: 1px solid var(--border-color);
+    height: 4.1rem;
+    z-index: 5;
 `;
 
 const BodyInterface = styled.div`
@@ -109,44 +121,49 @@ const BodyInterface = styled.div`
     overflow-x: hidden;
 `;
 
-const NavigationInterface = styled.aside<{navOpen?:boolean}>`
-  margin-left: ${p=>p.navOpen ? '0' : '-16rem'};
+const NavigationInterface = styled.aside<{isNavOpened?:boolean}>`
+  margin-left: ${p=>p.isNavOpened ? '0' : '-16rem'};
   flex: 0 0 16rem;
   font-size: 0.875rem;
   overflow-x: hidden;
   overflow-y: auto;
   padding: 2rem 0;
+  transition: margin 0.25s var(--ease-in-out-quad);
   @media (min-width: 1024px) {
     margin-left: 0;
   }
 `;
 
 
-const ContentWrapper = styled.main<{ wider?: boolean }>`
+const ContentWrapper = styled.main<{isWide: boolean }>`
     padding: 2rem 1rem 2rem;
     width: 100%;
     @media (min-width: 760px) {
-        width: ${p=>p.wider? '100%' : '60%'};
+        width: ${p=>p.isWide? '90%' : '60%'};
     }
 `;
 
-const ContentInterface = styled.main<{navOpen?: boolean}>`
+const ContentInterface = styled.main<{isNavOpened?: boolean}>`
     flex-grow: 1;
     min-width: 20rem;
     display: flex;
     justify-content: center;
-    opacity: ${p => (p.navOpen ? 0.3 : 1)};
-    // transform: ${p => (p.navOpen ? `translateX(16rem)` : null)};
+    opacity: ${p => (p.isNavOpened ? 0.3 : 1)};
+    @media (min-width: 1024px) {
+        opacity: 1;
+    }
+    // transform: ${p => (p.isNavOpened ? `translateX(16rem)` : null)};
 `;
 
 
 const TableInterface = styled.aside`
-  font-size: 0.75rem;
-  font-weight: bold;
-  width: 0;
-  @media (min-width: 1280px) {
-    width: 16rem;
-  }
+    font-size: 0.75rem;
+    font-weight: bold;
+    width: 0;
+    transition: width 0.25s var(--ease-in-out-quad);
+    @media (min-width: 1280px) {
+        width: 16rem;
+    }
 `;
 
 
