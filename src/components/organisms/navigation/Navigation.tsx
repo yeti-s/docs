@@ -90,7 +90,7 @@ const Navigation = () => {
                         <>
                             {item.children.map(child => 
                                 <ListSubItem key={child.id}>
-                                    <NoneDecoLink to={`/${child.id}`} bold={false}>
+                                    <NoneDecoLink to={`/${child.id}`}>
                                         {child.title}
                                     </NoneDecoLink>
                                 </ListSubItem>

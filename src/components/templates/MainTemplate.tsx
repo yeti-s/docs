@@ -1,16 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "@emotion/styled";
 
 import Layout from "@src/Layout";
 import Navigation from "@src/components/organisms/navigation/Navigation";
-import ContentTables from "@src/components/TableOfContent/TableOfContent";
+import TableOfContent from "@src/components/organisms/toc/TableOfContent";
 import Header from "@src/components/organisms/header/Header";
 
 import type { PageProps } from "gatsby";
 import { graphql } from "gatsby";
 import { MDXProvider } from "@mdx-js/react";
-import { useRecoilValue } from "recoil";
-import { createAtom, TOGGLE_WIDE, TOGGLE_NAV } from "@src/context/atoms";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { createAtom, TOGGLE_WIDE, TOGGLE_NAV, SET_TABLE_OF_CONTENT } from "@src/context/atoms";
 import 'katex/dist/katex.min.css'
 
 /* ---custom MDX components--- */
@@ -53,6 +53,11 @@ const MainTemplate = ({ data: { mdx }, children }: PageProps<QueryProps>) => {
 
     const isWide = useRecoilValue(createAtom(TOGGLE_WIDE, false));
     const isNavOpened = useRecoilValue(createAtom(TOGGLE_NAV, false));
+    const tocSetter = useSetRecoilState(createAtom(SET_TABLE_OF_CONTENT, mdx.tableOfContents.items));
+
+    useEffect(() => {
+        tocSetter(mdx.tableOfContents.items);
+    }, [mdx])
 
     return (
         <Layout>
@@ -85,7 +90,7 @@ const MainTemplate = ({ data: { mdx }, children }: PageProps<QueryProps>) => {
                     </ContentWrapper>
                 </ContentInterface>
                 <TableInterface>
-                    <ContentTables tableOfContents={mdx.tableOfContents.items}/>
+                    <TableOfContent/>
                 </TableInterface>
             </BodyInterface>
         </Layout>

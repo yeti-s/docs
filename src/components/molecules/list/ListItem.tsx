@@ -49,6 +49,8 @@ const ListItem = ({id, subItems, children}: Props) => {
 };
 
 const SubList = styled.ul<{height:number}>`
+    width: 100%;
+    padding: 0 1rem 0 2.5rem;
     height: ${p=>p.height}px;
     overflow: hidden;
     transition: height 0.5s cubic-bezier(0.32, 0.9, 0.28, 0.93);

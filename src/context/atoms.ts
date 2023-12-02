@@ -8,6 +8,7 @@ type Reference = {
 const ref:Reference = {};
 export const TOGGLE_WIDE = 'TOGGLE_WIDE';
 export const TOGGLE_NAV = 'TOGGLE_NAV';
+export const SET_TABLE_OF_CONTENT = 'SET_TABLE_OF_CONTENT';
 
 export const createAtom = (key:string, defaultValue:any) => {
     if (!ref.hasOwnProperty(key)) {
