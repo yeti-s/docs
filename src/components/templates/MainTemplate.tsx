@@ -66,7 +66,9 @@ const MainTemplate = ({ data: { mdx }, children }: PageProps<QueryProps>) => {
             </HeaderInterface>
             <BodyInterface>
                 <NavigationInterface className="navigation" isNavOpened={isNavOpened}>
-                    <Navigation/>
+                    <Fixer>
+                        <Navigation/>
+                    </Fixer>
                 </NavigationInterface>
                 <ContentInterface isNavOpened={isNavOpened}>
                     <ContentWrapper isWide={isWide}>
@@ -90,7 +92,9 @@ const MainTemplate = ({ data: { mdx }, children }: PageProps<QueryProps>) => {
                     </ContentWrapper>
                 </ContentInterface>
                 <TableInterface>
-                    <TableOfContent/>
+                    <TableFixer>
+                        <TableOfContent/>
+                    </TableFixer>
                 </TableInterface>
             </BodyInterface>
         </Layout>
@@ -99,24 +103,26 @@ const MainTemplate = ({ data: { mdx }, children }: PageProps<QueryProps>) => {
 
 export const query = graphql`
 query($id: String!) {
-  mdx(id: {eq: $id}) {
-    id
-    body
-    tableOfContents
-    frontmatter {
-      description
-      title
+    mdx(id: {eq: $id}) {
+        id
+        body
+        tableOfContents
+        frontmatter {
+                description
+                title
+        }
     }
-  }
 }`;
 
 const HeaderInterface = styled.div`
     display: flex;
-    padding: 0.6rem 2rem 0.6rem 0.6rem;
-    background: var(--background-color);
-    border-bottom: 1px solid var(--border-color);
     height: 4.1rem;
     z-index: 5;
+    padding: 0.6rem 2rem 0.6rem 0.6rem;
+    position: fixed;
+    width: 100%;
+    background: var(--background-color);
+    border-bottom: 1px solid var(--border-color);
 `;
 
 const BodyInterface = styled.div`
@@ -127,21 +133,26 @@ const BodyInterface = styled.div`
 `;
 
 const NavigationInterface = styled.aside<{isNavOpened?:boolean}>`
-  margin-left: ${p=>p.isNavOpened ? '0' : '-16rem'};
-  flex: 0 0 16rem;
-  font-size: 0.875rem;
-  overflow-x: hidden;
-  overflow-y: auto;
-  padding: 2rem 0;
-  transition: margin 0.25s var(--ease-in-out-quad);
-  @media (min-width: 1024px) {
-    margin-left: 0;
-  }
+    margin-left: ${p=>p.isNavOpened ? '0' : '-16rem'};
+    flex: 0 0 16rem;
+    font-size: 0.875rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding-top: 5.1rem;
+    transition: margin 0.25s var(--ease-in-out-quad);
+    @media (min-width: 1024px) {
+        margin-left: 0;
+    }
 `;
+
+const Fixer = styled.nav`
+    position: fixed;
+    width: 16rem;
+`
 
 
 const ContentWrapper = styled.main<{isWide: boolean }>`
-    padding: 2rem 1rem 2rem;
+    padding: 1rem;
     width: 100%;
     @media (min-width: 760px) {
         width: ${p=>p.isWide? '90%' : '60%'};
@@ -166,7 +177,7 @@ const TableInterface = styled.aside`
     font-weight: bold;
     overflow-x: hidden;
     overflow-y: auto;
-    padding: 3rem 1rem;
+    padding-top: 6.1rem;
     width: 0;
     transition: width 0.25s var(--ease-in-out-quad);
     @media (min-width: 1280px) {
@@ -174,6 +185,9 @@ const TableInterface = styled.aside`
     }
 `;
 
+const TableFixer = styled(Fixer)`
+    padding: 0 1rem 0 1rem;
+`
 
 
 export default MainTemplate;
