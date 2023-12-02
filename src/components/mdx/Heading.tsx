@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "@emotion/styled";
 
-const H1 = (props: JSX.IntrinsicElements['h1']) => <MDX_Heading><MDX_H1>{props.children}</MDX_H1></MDX_Heading>;
-const H2 = (props: JSX.IntrinsicElements['h2']) => <MDX_Heading><MDX_H2>{props.children}</MDX_H2></MDX_Heading>;
-const H3 = (props: JSX.IntrinsicElements['h3']) => <MDX_Heading><MDX_H3>{props.children}</MDX_H3></MDX_Heading>;
-const H4 = (props: JSX.IntrinsicElements['h4']) => <MDX_Heading><MDX_H4>{props.children}</MDX_H4></MDX_Heading>;
-const H5 = (props: JSX.IntrinsicElements['h5']) => <MDX_Heading><MDX_H5>{props.children}</MDX_H5></MDX_Heading>;
-const H6 = (props: JSX.IntrinsicElements['h6']) => <MDX_Heading><MDX_H6>{props.children}</MDX_H6></MDX_Heading>;
+const H1 = (props: JSX.IntrinsicElements['h1']) => <MDX_Heading><MDX_H1 id={props.id}>{props.children}</MDX_H1></MDX_Heading>;
+const H2 = (props: JSX.IntrinsicElements['h2']) => <MDX_Heading><MDX_H2 id={props.id}>{props.children}</MDX_H2></MDX_Heading>;
+const H3 = (props: JSX.IntrinsicElements['h3']) => <MDX_Heading><MDX_H3 id={props.id}>{props.children}</MDX_H3></MDX_Heading>;
+const H4 = (props: JSX.IntrinsicElements['h4']) => <MDX_Heading><MDX_H4 id={props.id}>{props.children}</MDX_H4></MDX_Heading>;
+const H5 = (props: JSX.IntrinsicElements['h5']) => <MDX_Heading><MDX_H5 id={props.id}>{props.children}</MDX_H5></MDX_Heading>;
+const H6 = (props: JSX.IntrinsicElements['h6']) => <MDX_Heading><MDX_H6 id={props.id}>{props.children}</MDX_H6></MDX_Heading>;
 
 const MDX_H1 = styled.h1`
     padding-bottom: 0.3em;
