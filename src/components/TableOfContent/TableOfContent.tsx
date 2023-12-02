@@ -6,40 +6,41 @@ import ListItem from '@src/components/TableOfContent/ListItem';
 import { tableBodyClasses } from '@mui/material';
 
 type Item = {
-    url:string,
-    title:string,
-    index?:number,
-    depth?:number
-    items?:Array<Item>
+    url: string,
+    title: string,
+    index?: number,
+    depth?: number
+    items?: Array<Item>
 };
 
 type Table = {
-    url:string,
-    title:string,
-    index:number,
-    depth:number
+    url: string,
+    title: string,
+    index: number,
+    depth: number
 }
 
 type Props = {
-    tableOfContents:Array<Item>
+    tableOfContents: Array<Item>
 };
 
-const ContentTables = ({ tableOfContents }:Props) => {
+const ContentTables = ({ tableOfContents }: Props) => {
     const [tables, setTables] = useState<Array<Table>>([]);
-    
-    useEffect(()=>{
-        const tables:Array<Table> = []
-        const getTables = (items:Array<Item>, depth:number) => {
+
+    useEffect(() => {
+        const tables: Array<Table> = []
+        const getTables = (items: Array<Item>, depth: number) => {
+            if (!items) return;
             items.forEach((item, index) => {
                 item.index = index;
                 item.depth = depth;
-                tables.push({url:item.url, title:item.title, index:item.index, depth:item.depth});
-                if (item.items) getTables(item.items, depth+1);
+                tables.push({ url: item.url, title: item.title, index: item.index, depth: item.depth });
+                if (item.items) getTables(item.items, depth + 1);
             })
         }
         getTables(tableOfContents, 0);
         setTables(tables);
-    },[tableOfContents])
+    }, [tableOfContents])
 
     return (
         <RightSidebarWrapper>
@@ -47,8 +48,8 @@ const ContentTables = ({ tableOfContents }:Props) => {
                 <RightSidebarTitle>Contents</RightSidebarTitle>
                 <RightSidebarList>
                     {tables.map(table => (
-                        <RightSidebarListItem key={table.depth+table.url}>
-                            <ListItem url={table.url} title={table.title} depth={table.depth} index={table.index}/>
+                        <RightSidebarListItem key={table.depth + table.url}>
+                            <ListItem url={table.url} title={table.title} depth={table.depth} index={table.index} />
                         </RightSidebarListItem>
                     ))}
                 </RightSidebarList>
