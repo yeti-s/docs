@@ -41,40 +41,10 @@ const GlobalStyle = () => {
     }
 
     h1 {
-      font-size: 30px;
-      ${head}
+      border-bottom: 1px solid ${theme.borderColor}
     }
-    h1::after {
-      ${headBefore}
-      border-bottom-color: ${theme.borderColor};
-    }
-
     h2 {
-      font-size: 25px;
-      ${head}
-    }
-    h2::after {
-      ${headBefore}
-      border-bottom-color: ${theme.borderColor};
-    }
-
-    h3 {
-      font-size: 20px;
-      ${head}
-    }
-    h3::after {
-      ${headBefore}
-      border-bottom-color: ${theme.borderColor};
-    }
-
-    h4 {
-      font-size: 17px;
-      ${head}
-    }
-
-    h5 {
-      font-size: 14px;
-      ${head}
+      border-bottom: 1px solid ${theme.borderColor}
     }
 
     a {
