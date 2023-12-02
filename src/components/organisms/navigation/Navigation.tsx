@@ -1,9 +1,25 @@
 import styled from '@emotion/styled';
 import { graphql, useStaticQuery } from 'gatsby';
-import React, { useEffect, useState } from 'react';
-import NavItem, { Item } from '@src/components/Sidebar/NavItem';
+import React, { useState } from 'react';
+import ListItem from '@src/components/molecules/list/ListItem';
+import ListSubItem from '@src/components/molecules/list/ListSubItem';
+import NoneDecoLink from '@src/components/atoms/links/NoneDecoLink';
 
 type ItemTree = { [subject: string]: Item };
+
+class Item {
+    id:string;
+    title:string;
+    order: number;
+    children: Array<Item>;
+
+    constructor(id="", title="", order:number|null = null) {
+        this.id = id
+        this.title = title
+        this.order = order ? order : Number.MAX_VALUE;
+        this.children = [];
+    }
+}
 
 type Node = {
     id: string,
@@ -21,14 +37,15 @@ type QueryProps = {
 };
 
 const sortItems = (a: Item, b: Item) => {
-    const orderA = a.order ? a.order : 0;
-    const orderB = b.order ? b.order : 0;
-    if (orderA == orderB) {
-        const titleA = a.title ? a.title : '';
-        const titleB = b.title ? b.title : '';
-        return titleA > titleB ? 1 : -1;
-    }
-    return orderA > orderB ? 1 : -1;
+    // no child item has high priority
+    const hasAChild = a.children.length > 0;
+    const hasBChild = b.children.length > 0;
+    if (hasAChild && !hasBChild) return 1;
+    if (!hasAChild && hasBChild) return -1;
+    // same orders, than compare title
+    if (a.order == b.order)  return a.title > b.title ? 1 : -1;
+    // low order has high priority 
+    return a.order > b.order ? 1 : -1;
 }
 
 const createTree = (nodes: Array<Node>): Array<Item> => {
@@ -44,25 +61,13 @@ const createTree = (nodes: Array<Node>): Array<Item> => {
         if (parts.length < 2) return;
 
         const subject = parts[0];
-        if (!tree[subject]) tree[subject] = {
-            id: '-',
-            title: '-',
-            order: 0,
-            children: []
-        };
+        if (!tree[subject]) tree[subject] = new Item();
         if (parts[1].includes('index')) {
             tree[subject].id = id;
             tree[subject].title = title;
             tree[subject].order = order ? order : 0;
         }
-        else {
-            tree[subject].children.push({
-                id: id,
-                title: title,
-                order: order ? order : 0,
-                children: []
-            })
-        }
+        else tree[subject].children.push( new Item(id, title, order));
     })
 
     Object.values(tree).forEach(item => {
@@ -89,14 +94,24 @@ const Navigation = () => {
         }
     `);
     const { allMdx } = result;
-    const [tree] = useState(() => {
-        return createTree(allMdx.nodes);
-    });
+    const [tree] = useState(() => createTree(allMdx.nodes));
 
     return (
         <NavList>
             {
-                tree.map(item => <NavItem item={item} key={item.id} />)
+                tree.map(item => {
+                        const hasChildren = item.children.length > 0;
+                        const subItems:React.ReactNode = 
+                        <>
+                            {item.children.map(child => <ListSubItem><NoneDecoLink to={`/${child.id}`} bold={false}>{child.title}</NoneDecoLink></ListSubItem>)}
+                        </>
+
+                        return (
+                            <ListItem id={item.id} subItems={hasChildren ? subItems : null}>
+                                <NoneDecoLink to={`/${item.id}`}>{item.title}</NoneDecoLink>
+                            </ListItem>
+                        )
+                })
             }
         </NavList>
     );
@@ -105,7 +120,6 @@ const Navigation = () => {
 const NavList = styled.ul`
   margin: 0;
   padding: 0;
-  list-style: none;
 `;
 
 export default React.memo(Navigation);
