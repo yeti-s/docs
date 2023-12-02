@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Navigation from '@src/components/Sidebar/Navigation';
+import Navigation from '@src/components/organisms/navigation/Navigation';
 import mediaqueries from '@src/styles/media';
 
 type Prpos = {
