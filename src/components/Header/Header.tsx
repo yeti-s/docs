@@ -6,7 +6,6 @@ import mediaqueries from '@src/styles/media';
 
 import LogoWrapper from '@src/components/Header/LogoWrapper';
 import SocialIcons from '@src/components/Header/SocialIcons';
-import { useTheme, Theme } from '@emotion/react';
 import Icon from '../atoms/Icon';
 import { LightMode, DarkMode } from '@mui/icons-material';
 
@@ -16,7 +15,6 @@ type Props = {
 }
 
 const Header = ({ navOpen, setNavOpen }: Props) => {
-  const theme = useTheme();
   const isDarkMode = useContext(GlobalStateContext).isDarkMode;
   const dispatch = useContext(GlobalDispatchContext);
   const changeTheme = () => {
@@ -24,7 +22,7 @@ const Header = ({ navOpen, setNavOpen }: Props) => {
   }
 
   return (
-    <StyledHeader theme={theme} navOpen={navOpen}>
+    <StyledHeader navOpen={navOpen}>
       <HeaderSection>
         <NavIconButton>
           {/*             
@@ -53,15 +51,7 @@ const Header = ({ navOpen, setNavOpen }: Props) => {
   );
 };
 
-const StyledHeader = styled.header<{ theme: Theme, navOpen: boolean }>`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 1rem;
-  z-index: 5;
-  background: ${p => p.theme.background};
-  transition: all 0.25s var(--ease-in-out-quad);
-  border-bottom: 1px solid ${p => p.theme.borderColor};
+const StyledHeader = styled.header<{navOpen: boolean }>`
   transform: ${p => (p.navOpen ? `translateX(16rem)` : null)};
   ${mediaqueries.desktop_up`
     position: fixed;

@@ -25,6 +25,7 @@ const GlobalStyle = () => {
 
     body {
       margin: 0;
+      border-color: ${theme.borderColor};
       font-family: '-apple-system, BlinkMacSystemFont, San Francisco, Helvetica Neue, Helvetica, Ubuntu, Roboto, Noto, Segoe UI, Arial, sans-serif';
     }
 
@@ -43,7 +44,7 @@ const GlobalStyle = () => {
       font-size: 30px;
       ${head}
     }
-    h1::before {
+    h1::after {
       ${headBefore}
       border-bottom-color: ${theme.borderColor};
     }
@@ -52,7 +53,7 @@ const GlobalStyle = () => {
       font-size: 25px;
       ${head}
     }
-    h2::before {
+    h2::after {
       ${headBefore}
       border-bottom-color: ${theme.borderColor};
     }
@@ -61,7 +62,7 @@ const GlobalStyle = () => {
       font-size: 20px;
       ${head}
     }
-    h3::before {
+    h3::after {
       ${headBefore}
       border-bottom-color: ${theme.borderColor};
     }
@@ -77,7 +78,7 @@ const GlobalStyle = () => {
     }
 
     a {
-      color: 'secondary';
+      color: ${theme.text};
       trainsition: 0.2s;
       :hover, :focus {
         color: ${theme.primary}
@@ -91,10 +92,29 @@ const GlobalStyle = () => {
 
     svg {
       color: ${theme.text};
+      transition: color 0.2s ease-out;
     }
     svg:hover, svg:focus, svg.is-active {
       color: ${theme.primary}
     }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1rem;
+      z-index: 5;
+      background: ${theme.background};
+      transition: all 0.25s var(--ease-in-out-quad);
+      border-bottom: 1px solid ${theme.borderColor};
+    }
+
+    /* custom class */
+    .sidebar {
+      background: ${theme.sidebar};
+      border-right: 0.1rem solid ${theme.borderColor};
+    }
+
   `} />
 }
 
@@ -112,15 +132,5 @@ const headBefore = `
   margin-bottom: 40px;
   border-bottom: 1px solid;
 `
-
-const globalStyles = `
-  /**
-   * Thanks to Benjamin De Cock
-   * https://gist.github.com/bendc/ac03faac0bf2aee25b49e5fd260a727d
-   */
-
-`;
-
-
 
 export default GlobalStyle
