@@ -13,6 +13,8 @@ import P from "@src/components/mdx/Paragraph";
 import { H1, H2, H3, H4, H5, H6 } from "@src/components/mdx/Heading";
 import ThematicBreak from "@src/components/mdx/ThematicBreak";
 import Blockquote from "@src/components/mdx/Blockquote";
+import List from "@src/components/mdx/List";
+import UnorderedList from "@src/components/mdx/UnorderedList";
 import CodeBlock from "@src/components/mdx/CodeBlock";
 import Code from "@src/components/mdx/Code";
 
@@ -55,6 +57,8 @@ const MDXTemplate = ({ data: { mdx }, children }: PageProps<QueryProps>) => {
                         h6: H6,
                         hr: ThematicBreak,
                         blockquote: Blockquote,
+                        ul: UnorderedList,
+                        ol: List,
                         pre: CodeBlock,
                         code: Code
                     }}>
