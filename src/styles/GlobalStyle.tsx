@@ -84,6 +84,11 @@ const GlobalStyle = () => {
       font-size: 12px;
     }
 
+    blockquote {
+      margin: 0;
+      border-left: 0.25em solid ${theme.blockquote};
+    }
+
     header {
       display: flex;
       justify-content: space-between;
