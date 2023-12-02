@@ -36,7 +36,7 @@ const GlobalStyle = () => {
       border-color: var(--border-color);
       background-color: var(--background-color);
       color: var(--text-color);
-      font-family: '-apple-system, BlinkMacSystemFont, San Francisco, Helvetica Neue, Helvetica, Ubuntu, Roboto, Noto, Segoe UI, Arial, sans-serif';
+      font-family: -apple-system, BlinkMacSystemFont, San Francisco, Helvetica Neue, Helvetica, Ubuntu, Roboto, Noto, Segoe UI, Arial, sans-serif;
     }
 
     main {
