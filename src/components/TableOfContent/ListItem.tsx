@@ -24,7 +24,6 @@ const ListItemLink = styled(Link)`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  transition: color 0.2s ease-out;;
 `;
 
 export default ListItem;

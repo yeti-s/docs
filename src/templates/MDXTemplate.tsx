@@ -87,7 +87,6 @@ query($id: String!) {
 
 const SiteContent = styled.main<{ navOpen: boolean }>`
     padding: 2rem 1rem 2rem;
-    transition: 0.25s var(--ease-in-out-quad);
     opacity: ${p => (p.navOpen ? 0.3 : 1)};
     transform: ${p => (p.navOpen ? `translateX(16rem)` : null)};
     width: 100%;

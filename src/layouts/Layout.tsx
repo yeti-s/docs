@@ -40,7 +40,6 @@ const SiteWrapper = styled.div`
     display: flex;
     min-height: 100vh;
     overflow-x: hidden;
-    transition: background 0.25s var(--ease-in-out-quad);
 `;
 
 const SiteContentWrapper = styled.div`

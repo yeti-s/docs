@@ -37,7 +37,6 @@ const LeftSidebarNav = styled.nav<{navOpen:boolean}>`
   width: 16rem;
   height: 100%;
   padding: 1rem 0;
-  transition: 0.25s var(--ease-in-out-quad);
   transform: ${p => (p.navOpen ? `translateX(16rem)` : null)};
   ${mediaqueries.desktop_up`
     transform: translateX(0);

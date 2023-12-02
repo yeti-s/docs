@@ -26,11 +26,11 @@ export const light: Theme = {
 
 export const dark: Theme = {
   text: '#fff',
-  background: 'hsl(230,25%,18%)',
+  background: '#22272e',
   textBackground: '#040404',
   primary: 'hsl(260, 100%, 80%)',
   secondary: 'hsl(290, 100%, 80%)',
-  sidebar: 'hsla(230, 20%, 0%, 20%)',
+  sidebar: '#2d333b',
   borderColor: 'rgba(255, 255, 255, 0.15)',
   codeBackground: '#343942',
   blockquote: '#444c56' 

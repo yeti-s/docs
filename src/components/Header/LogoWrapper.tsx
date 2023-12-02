@@ -23,7 +23,6 @@ const StyledLogoWrapper = styled.div`
 const LogoLink = styled(Link)`
   display: block;
   text-decoration-line: none;
-  transition: color 0.2s ease-out;
 `;
 
 export default LogoWrapper;
