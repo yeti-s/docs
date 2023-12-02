@@ -93,7 +93,6 @@ const SiteContent = styled.main<{ navOpen: boolean }>`
     ${mediaqueries.desktop_up`
         transform: translateX(0);
         opacity: 1;
-        padding: 7rem 3rem 3rem;
         width: 90%
     `};
 `;

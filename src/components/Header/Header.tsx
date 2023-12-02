@@ -54,7 +54,6 @@ const Header = ({ navOpen, setNavOpen }: Props) => {
 const StyledHeader = styled.header<{navOpen: boolean }>`
   transform: ${p => (p.navOpen ? `translateX(16rem)` : null)};
   ${mediaqueries.desktop_up`
-    position: fixed;
     top: 0;
     left: 0;
     right: 0;

@@ -127,6 +127,7 @@ const GlobalStyle = () => {
       z-index: 5;
       background: var(--background-color);
       border-bottom: 1px solid var(--border-color);
+      height: 4.1rem;
     }
 
     pre {

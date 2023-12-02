@@ -37,8 +37,9 @@ const Layout = ({ children }: LayoutProps) => {
 
 
 const SiteWrapper = styled.div`
+    position: relative;
     display: flex;
-    min-height: 100vh;
+    min-height: calc(100vh - 4.1rem);
     overflow-x: hidden;
 `;
 

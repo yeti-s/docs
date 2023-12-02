@@ -59,24 +59,22 @@ const ContentTables = ({ tableOfContents }: Props) => {
 };
 
 const RightSidebarWrapper = styled.aside`
-  display: none;
-  flex: 0 0 16rem;
+  display: block;
   font-size: 0.75rem;
   font-weight: 600;
-  ${mediaqueries.desktop_medium_up`
-    display: block
-  `};
+  width: 0;
+  @media (min-width: 1280px) {
+    width: 16rem;
+  }
 `;
 
 const RightSidebarNav = styled.nav`
-  position: fixed;
   top: 0;
   bottom: 0;
   overflow-x: hidden;
   overflow-y: auto;
-  width: 16rem;
   height: 100%;
-  padding: 7rem 1rem 0;
+  padding: 3rem 1rem;
 `;
 
 const RightSidebarTitle = styled.p`

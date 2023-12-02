@@ -23,25 +23,20 @@ const LeftSidebarWrapper = styled.aside`
   margin-left: -16rem;
   flex: 0 0 16rem;
   font-size: 0.875rem;
-  ${mediaqueries.desktop_up`
+  @media (min-width: 1024px) {
     margin-left: 0;
-  `};
+  }
 `;
 
 const LeftSidebarNav = styled.nav<{navOpen:boolean}>`
-  position: fixed;
   top: 0;
   bottom: 0;
   overflow-x: hidden;
   overflow-y: auto;
   width: 16rem;
   height: 100%;
-  padding: 1rem 0;
+  padding: 2rem 0;
   transform: ${p => (p.navOpen ? `translateX(16rem)` : null)};
-  ${mediaqueries.desktop_up`
-    transform: translateX(0);
-    padding: 6.6rem 0 1rem;
-  `};
 `;
 
 LeftSidebar.propTypes = {
