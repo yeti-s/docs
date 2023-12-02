@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Highlight, themes } from 'prism-react-renderer'
 import styled from '@emotion/styled';
+import { GlobalStateContext } from '@src/context/ContextProvier';
 
 const getLineNumWidth = (code: string) => {
     return (
@@ -19,6 +20,7 @@ const CodeBlock = (props: JSX.IntrinsicElements['pre']) => {
     const [code, setCode] = useState('');
     const [lang, setLang] = useState('');
     const [lineNumWidth, setLineNumWidth] = useState(0);
+    const theme = useContext(GlobalStateContext).isDarkMode ? themes.vsDark : themes.vsLight;
 
     useEffect(() => {
         if (React.isValidElement(props.children)) {
@@ -38,9 +40,9 @@ const CodeBlock = (props: JSX.IntrinsicElements['pre']) => {
     }, [props])
 
     return (
-        <Highlight theme={themes.github} code={code} language={lang}>
-            {({ className, style, tokens, getLineProps, getTokenProps }) => (
-                <Pre className={className} style={style}>
+        <Highlight theme={theme} code={code} language={lang}>
+            {({ className, tokens, getLineProps, getTokenProps }) => (
+                <Pre className={className}>
                     {tokens.map((line, i) => (
                         <div {...getLineProps({ line, key: i })}>
                             <LineNoWrapper width={lineNumWidth}>
@@ -73,13 +75,6 @@ text-align: right;
 `;
 
 const Pre = styled.pre`
-text-align: left;
-margin: 1em 0;
-padding: 0.5em;
-border-radius: 6px;
-overflow: auto;
-font-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;
-font-size: 85%;
 & .token-line {
     line-height: 1.3em;
     height: 1.3em;

@@ -21,6 +21,7 @@ const GlobalStyle = () => {
       --text-color: ${theme.text};
       --primary: ${theme.primary};
       --code-background-color: ${theme.codeBackground};
+      --codeblock-background-color: ${theme.codeBlockBackground};
       --blockquote-background-color: ${theme.blockquote};
       --siderbar-background-color: ${theme.sidebar};
     }
@@ -117,10 +118,29 @@ const GlobalStyle = () => {
       border-bottom: 1px solid var(--border-color);
     }
 
+    pre {
+      text-align: left;
+      margin: 1em 0;
+      padding: 0.5em;
+      border-radius: 6px;
+      overflow: auto;
+      background-color: var(--codeblock-background-color);
+      font-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;
+      font-size: 85%;
+    }
+
     /* custom class */
     .sidebar {
       background: var(--siderbar-background-color);
       border-right: 0.1rem solid var(--border-color);
+    }
+
+    .token {
+      transition: all 0.2s var(--ease-out-quart);
+    }
+
+    .token-line {
+      transition: all 0.2s var(--ease-out-quart);
     }
 
   `} />
