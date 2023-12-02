@@ -13,20 +13,14 @@ type Props = {
     children?: React.ReactNode
 };
 
-const ListItem = ({id, button, subItems, children}: Props) => {
-    const [opened, setOpened] = useRecoilState(createAtom(id, false));
-    const [subHeight, setSubHeight] = useState(0);
+const ListItem = ({id, subItems, children}: Props) => {
+    const [subHeight, setSubHeight] = useRecoilState(createAtom(id, 0));
     const ref = useRef<HTMLUListElement>(null);
+    const opened = subHeight > 0;
 
     const toggleSubList = () => {
-        if (opened) {
-            setSubHeight(0);
-            setOpened(false);
-        }
-        else if (ref.current) {
-            setSubHeight(ref.current.scrollHeight);
-            setOpened(true);
-        }
+        if (opened) setSubHeight(0);
+        else if (ref.current) setSubHeight(ref.current.scrollHeight);
     }
 
     return (
@@ -71,4 +65,4 @@ const ListContentCol = styled(Grid)`
     text-decoration: none;
 `;
 
-export default ListItem;
+export default React.memo(ListItem);

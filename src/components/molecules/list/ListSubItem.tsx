@@ -19,4 +19,4 @@ const ListSubRow = styled.li`
     padding: 0.3rem 0rem;
 `;
 
-export default ListSubItem;
+export default React.memo(ListSubItem);
