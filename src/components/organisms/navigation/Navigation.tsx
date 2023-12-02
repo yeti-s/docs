@@ -88,11 +88,17 @@ const Navigation = () => {
                         const hasChildren = item.children.length > 0;
                         const subItems:React.ReactNode = 
                         <>
-                            {item.children.map(child => <ListSubItem><NoneDecoLink to={`/${child.id}`} bold={false}>{child.title}</NoneDecoLink></ListSubItem>)}
+                            {item.children.map(child => 
+                                <ListSubItem key={child.id}>
+                                    <NoneDecoLink to={`/${child.id}`} bold={false}>
+                                        {child.title}
+                                    </NoneDecoLink>
+                                </ListSubItem>
+                            )}
                         </>
 
                         return (
-                            <ListItem id={item.id} subItems={hasChildren ? subItems : null}>
+                            <ListItem key={item.id} id={item.id} subItems={hasChildren ? subItems : null}>
                                 <NoneDecoLink to={`/${item.id}`}>{item.title}</NoneDecoLink>
                             </ListItem>
                         )
