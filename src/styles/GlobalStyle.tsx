@@ -65,7 +65,23 @@ const GlobalStyle = () => {
       transition: color 0.2s ease-out;
     }
     svg:hover, svg:focus, svg.is-active {
-      color: ${theme.primary}
+      color: ${theme.primary};
+    }
+
+    code {
+      font-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;
+      font-size: 12px;
+      background-color: ${theme.codeBackground};
+    }
+
+    tt {
+      font-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;
+      font-size: 12px;
+    }
+
+    samp {
+      font-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;
+      font-size: 12px;
     }
 
     header {

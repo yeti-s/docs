@@ -9,5 +9,6 @@ declare module '@emotion/react' {
         secondary: string;
         sidebar: string;
         borderColor: string;
+        codeBackground: string;
     }
 }
