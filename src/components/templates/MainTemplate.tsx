@@ -107,7 +107,7 @@ query($id: String!) {
 
 const HeaderInterface = styled.div`
     display: flex;
-    0.6rem 2rem 0.6rem 0.6rem
+    padding: 0.6rem 2rem 0.6rem 0.6rem;
     background: var(--background-color);
     border-bottom: 1px solid var(--border-color);
     height: 4.1rem;
@@ -159,6 +159,9 @@ const ContentInterface = styled.main<{isNavOpened?: boolean}>`
 const TableInterface = styled.aside`
     font-size: 0.75rem;
     font-weight: bold;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 3rem 1rem;
     width: 0;
     transition: width 0.25s var(--ease-in-out-quad);
     @media (min-width: 1280px) {
