@@ -1,7 +1,7 @@
 import { GatsbyNode, graphql } from "gatsby";
 import { resolve } from 'path'
 // import MDXTemplate from "./src/templates/MDXTemplate";
-const MDXTemplate = resolve('./src/templates/MDXTemplate.tsx');
+const MDXTemplate = resolve('./src/components/templates/MainTemplate.tsx');
 
 const createPages: GatsbyNode["createPages"] = async ({ graphql, actions, reporter }) => {
     const request = await graphql<Queries.Query>(`

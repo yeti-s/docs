@@ -147,6 +147,11 @@ const GlobalStyle = () => {
       border-right: 0.1rem solid var(--border-color);
     }
 
+    .navigation {
+      background: var(--siderbar-background-color);
+      border-right: 0.1rem solid var(--border-color);
+    }
+
     .token {
       transition: all 0.2s var(--ease-out-quart);
     }

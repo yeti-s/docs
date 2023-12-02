@@ -23,12 +23,11 @@ const Layout = ({ children }: LayoutProps) => {
         <>
             <ThemeProvider theme={isDarkMode ? themeMode.dark : themeMode.light}>
                 <GlobalStyle />
-                <Header navOpen={navOpen} setNavOpen={setNavOpen}/>
+                {/* <Header navOpen={navOpen} setNavOpen={setNavOpen}/>
                 <SiteWrapper>
-                    <LeftSidebar navOpen={navOpen} />
+                    <LeftSidebar navOpen={navOpen} /> */}
                     {children}
-                    {/* <ContentTables/> */}
-                </SiteWrapper>
+                {/* </SiteWrapper> */}
             </ThemeProvider>
         </>
     )
