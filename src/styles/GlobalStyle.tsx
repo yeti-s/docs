@@ -24,6 +24,17 @@ const GlobalStyle = () => {
       --codeblock-background-color: ${theme.codeBlockBackground};
       --blockquote-background-color: ${theme.blockquote};
       --siderbar-background-color: ${theme.sidebar};
+
+      --error-color: rgb(95, 33, 32);
+      --warning-color: rgb(102, 60, 0);
+      --info-color: rgb(1, 67, 97);
+      --success-color: rgb(30, 70, 32);
+      --error-background-color: rgb(253, 237, 237);
+      --warning-background-color: rgb(255 244 229);
+      --info-background-color: rgb(229 246 253);
+      --success-background-color: rgb(237 247 237);
+
+
     }
 
     *,
