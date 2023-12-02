@@ -1,9 +1,10 @@
-import styled from '@emotion/styled';
-import { graphql, useStaticQuery } from 'gatsby';
 import React from 'react';
+import styled from '@emotion/styled';
+import { Link, graphql, useStaticQuery } from 'gatsby';
 
-import IconButton from '@src/components/atoms/buttons/IconButton';
 import { GitHub, Instagram } from '@mui/icons-material';
+import IconButton from '@src/components/atoms/buttons/IconButton';
+
 
 type Icons = {
     [key: string]: React.ReactNode
@@ -38,7 +39,9 @@ const SocialButtons = () => {
         <SocialButtonsWrapper>
             {
                 socials.map(social => (
-                    <IconButton key={social.name} icon={icons[social.name]}/>
+                    <Link key={social.name} to={social.url}>
+                        <IconButton key={social.name} icon={icons[social.name]}/>
+                    </Link>
                 ))}
         </SocialButtonsWrapper>
     );
