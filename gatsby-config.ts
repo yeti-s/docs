@@ -58,6 +58,7 @@ const config: GatsbyConfig = {
     `gatsby-plugin-sharp`,
     `gatsby-plugin-emotion`
   ],
+  trailingSlash: 'never'
 }
 
 export default config

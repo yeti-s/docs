@@ -1,6 +1,6 @@
+import React from 'react';
 import styled from '@emotion/styled';
 import { Link } from 'gatsby';
-import React from 'react';
 
 type Props = {
     url:string,
@@ -9,15 +9,17 @@ type Props = {
     index:number
 };
 
-const ListItem = ({ url, title, depth, index }: Props) => {
+const TableItem = ({ url, title, depth, index }: Props) => {
     return (
-        <ListItemLink to={url}>
-            {'\u00A0\u00A0'.repeat(depth) + (index + 1) + '.\u00A0'}{title}
-        </ListItemLink>
+        <TableItemWrapper>
+            <TableItemLink to={url}>
+                {'\u00A0\u00A0'.repeat(depth) + (index + 1) + '.\u00A0'}{title}
+            </TableItemLink>
+        </TableItemWrapper>
     );
 };
 
-const ListItemLink = styled(Link)`
+const TableItemLink = styled(Link)`
   display: inline-block;
   width: 100%;
   text-decoration: none;
@@ -26,4 +28,8 @@ const ListItemLink = styled(Link)`
   text-overflow: ellipsis;
 `;
 
-export default ListItem;
+const TableItemWrapper = styled.li`
+  margin: 0.3rem 0;
+`;
+
+export default TableItem;
