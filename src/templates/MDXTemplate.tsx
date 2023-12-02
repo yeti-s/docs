@@ -11,6 +11,7 @@ import ContentTables from "@src/components/TableOfContent/TableOfContent";
 /* ---custom MDX components--- */
 import CodeBlock from "@src/components/mdx/CodeBlock";
 import Code from "@src/components/mdx/Code";
+import P from "@src/components/mdx/Paragraph";
 import { H1, H2, H3, H4, H5, H6 } from "@src/components/mdx/Heading";
 
 type Item = {
@@ -43,14 +44,15 @@ const MDXTemplate = ({ data: { mdx }, children }: PageProps<QueryProps>) => {
             <SiteContentWrapper>
                 <SiteContent navOpen={false}>
                     <MDXProvider components={{
-                        pre: CodeBlock,
-                        code: Code,
+                        p: P,
                         h1: H1,
                         h2: H2,
                         h3: H3,
                         h4: H4,
                         h5: H5,
-                        h6: H6
+                        h6: H6,
+                        pre: CodeBlock,
+                        code: Code
                     }}>
                         {children}
                     </MDXProvider>
