@@ -84,6 +84,10 @@ const GlobalStyle = () => {
       font-size: 12px;
     }
 
+    hr {
+      background-color: ${theme.borderColor}
+    }
+
     blockquote {
       margin: 0;
       border-left: 0.25em solid ${theme.blockquote};
@@ -108,20 +112,5 @@ const GlobalStyle = () => {
 
   `} />
 }
-
-const head = `
-  line-height: 1.125;
-  font-weight: 700;
-  margin-top: 0;
-  margin-bottom: 16px;
-`
-
-const headBefore = `
-  content: ' ';
-  display: block;
-  padding-top: 30px;
-  margin-bottom: 40px;
-  border-bottom: 1px solid;
-`
 
 export default GlobalStyle

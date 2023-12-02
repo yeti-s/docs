@@ -11,6 +11,7 @@ import ContentTables from "@src/components/TableOfContent/TableOfContent";
 /* ---custom MDX components--- */
 import P from "@src/components/mdx/Paragraph";
 import { H1, H2, H3, H4, H5, H6 } from "@src/components/mdx/Heading";
+import ThematicBreak from "@src/components/mdx/ThematicBreak";
 import Blockquote from "@src/components/mdx/Blockquote";
 import CodeBlock from "@src/components/mdx/CodeBlock";
 import Code from "@src/components/mdx/Code";
@@ -52,6 +53,7 @@ const MDXTemplate = ({ data: { mdx }, children }: PageProps<QueryProps>) => {
                         h4: H4,
                         h5: H5,
                         h6: H6,
+                        hr: ThematicBreak,
                         blockquote: Blockquote,
                         pre: CodeBlock,
                         code: Code
