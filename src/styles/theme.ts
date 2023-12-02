@@ -16,7 +16,8 @@ export const light: Theme = {
   secondary: '#c70d3a',
   sidebar: 'rgba(243, 243, 243, 0.38)',
   borderColor: 'rgba(0, 0, 0, 0.15)',
-  codeBackground: '#eff1f3'
+  codeBackground: '#eff1f3',
+  blockquote: '#d0d7de' 
 };
 
 /**
@@ -31,7 +32,8 @@ export const dark: Theme = {
   secondary: 'hsl(290, 100%, 80%)',
   sidebar: 'hsla(230, 20%, 0%, 20%)',
   borderColor: 'rgba(255, 255, 255, 0.15)',
-  codeBackground: '#343942'
+  codeBackground: '#343942',
+  blockquote: '#444c56' 
 };
 
 const themeMode: ThemeGroup = {
