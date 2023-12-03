@@ -57,11 +57,10 @@ const createTree = (nodes: Array<Node>): Array<Item> => {
         const title = node.frontmatter.title;
         const order = node.frontmatter.order;
         const path = node.internal.contentFilePath;
-        const parts = path.substring(path.indexOf('contents/') + 8).split('/');
+        const parts = path.substring(path.indexOf('contents/') + 9).split('/');
         if (parts.length < 2) return;
 
         const subject = parts[0];
-        if (subject === '') return; // index.mdx
         if (!tree[subject]) tree[subject] = new Item();
         if (parts[1].includes('index')) {
             tree[subject].id = id;
