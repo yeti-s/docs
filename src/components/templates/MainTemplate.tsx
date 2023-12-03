@@ -154,12 +154,13 @@ const Fixer = styled.nav`
 const ContentWrapper = styled.main<{isWide: boolean }>`
     padding: 1rem;
     width: 100%;
-    @media (min-width: 760px) {
+    @media (min-width: 900px) {
         width: ${p=>p.isWide? '90%' : '60%'};
     }
 `;
 
 const ContentInterface = styled.main<{isNavOpened?: boolean}>`
+    width: calc(100% - 32rem);
     flex-grow: 1;
     min-width: 20rem;
     display: flex;
