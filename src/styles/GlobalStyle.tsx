@@ -19,6 +19,7 @@ const GlobalStyle = () => {
       --border-color: ${theme.borderColor};
       --background-color: ${theme.background};
       --text-color: ${theme.text};
+      --sub-text-color: ${theme.subText};
       --primary: ${theme.primary};
       --code-background-color: ${theme.codeBackground};
       --codeblock-background-color: ${theme.codeBlockBackground};
@@ -80,10 +81,24 @@ const GlobalStyle = () => {
     }
 
     h1 {
-      border-bottom: 1px solid var(--border-color)
+      border-bottom: 1px solid var(--border-color);
+      font-size: var(--h1-size);
     }
     h2 {
-      border-bottom: 1px solid var(--border-color)
+      border-bottom: 1px solid var(--border-color);
+      font-size: var(--h2-size);
+    }
+    h3 {
+      font-size: var(--h3-size);
+    }
+    h4 {
+      font-size: var(--h4-size);
+    }
+    h5 {
+      font-size: var(--h5-size);
+    }
+    h6 {
+      font-size: var(--h6-size);
     }
 
     a {
@@ -140,6 +155,7 @@ const GlobalStyle = () => {
     }
 
     /* custom class */
+    
     .sidebar {
       background: var(--siderbar-background-color);
       border-right: 0.1rem solid var(--border-color);
@@ -156,6 +172,11 @@ const GlobalStyle = () => {
 
     .token-line {
       transition: all 0.2s var(--ease-out-quart);
+    }
+
+    .sub-text {
+      color: var(--sub-text-color);
+      transition: color 0.2s cubic-bezier(0.69, -0.02, 0.91, 0.4);
     }
 
   `} />
