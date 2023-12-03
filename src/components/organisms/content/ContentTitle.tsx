@@ -47,13 +47,14 @@ const MetaInfo = styled(Grid)`
 
 const TitleContainer = styled(Grid)`
     margin-bottom: 1.8rem;
-    padding-bottom: 1.2rem;
+    padding-bottom: 0.6rem;
     border-bottom: 1px solid var(--border-color);
 `
 
 const TitleWrapper = styled.h1`
     border: none;
-    margin-bottom: 0.8rem;
+    padding-bottom: 1.6rem;
+    margin: 0;
     font-size: 3rem;
 `
 

@@ -55,6 +55,7 @@ const GlobalStyle = () => {
 
     body {
       margin: 0;
+      line-height: 1.5rem;
       border-color: var(--border-color);
       background-color: var(--background-color);
       color: var(--text-color);
