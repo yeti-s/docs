@@ -29,7 +29,8 @@ const createPages: GatsbyNode["createPages"] = async ({ graphql, actions, report
             path: path,
             component: `${MDXTemplate}?__contentFilePath=${node.internal.contentFilePath}`,
             context: {
-                id: node.id
+                id: node.id,
+                relativePath: relativePath
             }
         })
     })

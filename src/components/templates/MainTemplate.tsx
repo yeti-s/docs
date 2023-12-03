@@ -5,6 +5,7 @@ import Layout from "@src/Layout";
 import Navigation from "@src/components/organisms/navigation/Navigation";
 import TableOfContent from "@src/components/organisms/toc/TableOfContent";
 import Header from "@src/components/organisms/header/Header";
+import ContentTitle from "@src/components/organisms/content/ContentTitle";
 
 import type { PageProps } from "gatsby";
 import { graphql } from "gatsby";
@@ -44,11 +45,13 @@ type QueryProps = {
             items: Array<Item>
         },
         body: string
+    },
+    file: {
+        modifiedTime: string
     }
 }
 
-const MainTemplate = ({ data: { mdx }, children }: PageProps<QueryProps>) => {
-
+const MainTemplate = ({ data: { mdx, file }, children }: PageProps<QueryProps>) => {
     const isWide = useRecoilValue(createAtom(TOGGLE_WIDE, false));
     const isNavOpened = useRecoilValue(createAtom(TOGGLE_NAV, false));
     const tocSetter = useSetRecoilState(createAtom(SET_TABLE_OF_CONTENT, mdx.tableOfContents.items));
@@ -70,6 +73,7 @@ const MainTemplate = ({ data: { mdx }, children }: PageProps<QueryProps>) => {
                 </NavigationInterface>
                 <ContentInterface isNavOpened={isNavOpened}>
                     <ContentWrapper isWide={isWide}>
+                        <ContentTitle title={mdx.frontmatter.title} modifiedTime={file.modifiedTime}/>
                         <MDXProvider components={{
                             p: P,
                             h1: H1,
@@ -100,7 +104,7 @@ const MainTemplate = ({ data: { mdx }, children }: PageProps<QueryProps>) => {
 };
 
 export const query = graphql`
-query($id: String!) {
+query($id: String!, $relativePath: String!) {
     mdx(id: {eq: $id}) {
         id
         body
@@ -109,6 +113,9 @@ query($id: String!) {
                 description
                 title
         }
+    }
+    file(relativePath: {eq: $relativePath}) {
+        modifiedTime
     }
 }`;
 

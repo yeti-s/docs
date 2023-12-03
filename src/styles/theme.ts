@@ -10,7 +10,7 @@ interface ThemeGroup {
 
 export const light: Theme = {
   text: '#1F2328',
-  subText: '#1f232882',
+  subText: '#A7A7A7',
   background: '#fff',
   textBackground: '#ddd',
   primary: '#e63b19',
