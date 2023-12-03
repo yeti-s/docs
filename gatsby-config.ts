@@ -24,6 +24,16 @@ const config: GatsbyConfig = {
   graphqlTypegen: true,
   plugins: [
     {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name:'yeti-docs',
+        short_name: 'yeti-docs',
+        start_url: '/',
+        display: `standalone`,
+        icon: 'src/static/site-icon.png'
+      }
+    },
+    {
       resolve: 'gatsby-plugin-mdx',
       options: {
         extensions: ['.mdx', '.md'],
