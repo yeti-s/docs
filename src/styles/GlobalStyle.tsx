@@ -37,6 +37,13 @@ const GlobalStyle = () => {
       --header-height: 4.1rem;
       --sidebar-width: 16rem;
       --body-padding-top: calc(var(--header-height) + 2rem);
+
+      --h1-size: 2rem;
+      --h2-size: 1.5rem;
+      --h3-size: 1.25em;
+      --h4-size: 1em;
+      --h5-size: 0.875em;
+      --h6-size: 0.85em;
     }
 
     *,

@@ -10,28 +10,28 @@ const H6 = (props: JSX.IntrinsicElements['h6']) => <MDX_Heading><MDX_H6 id={prop
 
 const MDX_H1 = styled.h1`
     padding-bottom: 0.3em;
-    font-size: 2em;
+    font-size: var(--h1-size);
 `;
 
 const MDX_H2 = styled.h1`
     padding-bottom: 0.3em;
-    font-size: 1.5em;
+    font-size: var(--h2-size);
 `;
 
 const MDX_H3 = styled.h1`
-    font-size: 1.25em;
+    font-size: var(--h3-size);
 `;
 
 const MDX_H4 = styled.h1`
-    font-size: 1em;
+    font-size: var(--h4-size);
 `;
 
 const MDX_H5 = styled.h1`
-    font-size: 0.875em;
+    font-size: var(--h5-size);
 `;
 
 const MDX_H6 = styled.h1`
-    font-size: 0.85em;
+    font-size: var(--h6-size);
 `;
 
 // github common heading style
