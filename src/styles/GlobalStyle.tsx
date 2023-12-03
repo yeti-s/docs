@@ -34,7 +34,9 @@ const GlobalStyle = () => {
       --info-background-color: rgb(229 246 253);
       --success-background-color: rgb(237 247 237);
 
-
+      --header-height: 4.1rem;
+      --sidebar-width: 16rem;
+      --body-padding-top: calc(var(--header-height) + 2rem);
     }
 
     *,

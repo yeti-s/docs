@@ -11,6 +11,7 @@ import { graphql } from "gatsby";
 import { MDXProvider } from "@mdx-js/react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { createAtom, TOGGLE_WIDE, TOGGLE_NAV, SET_TABLE_OF_CONTENT } from "@src/context/atoms";
+import MediaSize from "@src/styles/media";
 import 'katex/dist/katex.min.css'
 
 /* ---custom MDX components--- */
@@ -22,9 +23,6 @@ import List from "@src/components/mdx/List";
 import UnorderedList from "@src/components/mdx/UnorderedList";
 import CodeBlock from "@src/components/mdx/CodeBlock";
 import Code from "@src/components/mdx/Code";
-
-
-
 
 
 type Item = {
@@ -116,7 +114,7 @@ query($id: String!) {
 
 const HeaderInterface = styled.div`
     display: flex;
-    height: 4.1rem;
+    height: var(--header-height);
     z-index: 5;
     padding: 0.6rem 2rem 0.6rem 0.6rem;
     position: fixed;
@@ -128,48 +126,48 @@ const HeaderInterface = styled.div`
 const BodyInterface = styled.div`
     position: relative;
     display: flex;
-    min-height: calc(100vh - 4.1rem);
+    min-height: calc(100vh - var(--header-height));
     overflow-x: hidden;
 `;
 
 const NavigationInterface = styled.aside<{isNavOpened?:boolean}>`
-    margin-left: ${p=>p.isNavOpened ? '0' : '-16rem'};
-    flex: 0 0 16rem;
+    margin-left: ${p=>p.isNavOpened ? '0' : 'calc(-1 * var(--sidebar-width))'};
+    flex: 0 0 var(--sidebar-width);
     font-size: 0.875rem;
     overflow-x: hidden;
     overflow-y: auto;
-    padding-top: 5.1rem;
+    padding-top: var(--body-padding-top);
     transition: margin 0.25s var(--ease-in-out-quad);
-    @media (min-width: 1024px) {
+    @media (min-width: ${MediaSize.IPAD_PRO}px) {
         margin-left: 0;
     }
 `;
 
 const Fixer = styled.nav`
     position: fixed;
-    width: 16rem;
+    width: var(--sidebar-width);
 `
 
 
 const ContentWrapper = styled.main<{isWide: boolean }>`
     padding: 1rem;
     width: 100%;
-    @media (min-width: 900px) {
-        width: ${p=>p.isWide? '90%' : '60%'};
+    @media (min-width: ${MediaSize.IPAD_AIR}px) {
+        width: ${p=>p.isWide? '90%' : '65%'};
     }
 `;
 
 const ContentInterface = styled.main<{isNavOpened?: boolean}>`
-    width: calc(100% - 32rem);
+    width: calc(100% - 2 * var(--sidebar-width));
+    padding-top: var(--body-padding-top);
     flex-grow: 1;
     min-width: 20rem;
     display: flex;
     justify-content: center;
     opacity: ${p => (p.isNavOpened ? 0.3 : 1)};
-    @media (min-width: 1024px) {
+    @media (min-width: ${MediaSize.IPAD_PRO}px) {
         opacity: 1;
     }
-    // transform: ${p => (p.isNavOpened ? `translateX(16rem)` : null)};
 `;
 
 
@@ -178,11 +176,11 @@ const TableInterface = styled.aside`
     font-weight: bold;
     overflow-x: hidden;
     overflow-y: auto;
-    padding-top: 6.1rem;
+    padding-top: var(--body-padding-top);
     width: 0;
     transition: width 0.25s var(--ease-in-out-quad);
-    @media (min-width: 1280px) {
-        width: 16rem;
+    @media (min-width: ${MediaSize.HD}px) {
+        width: var(--sidebar-width);
     }
 `;
 
