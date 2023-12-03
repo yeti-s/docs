@@ -16,7 +16,7 @@ const ListSubItem = ({children}: Props) => {
 const ListSubRow = styled.li`
     display: flex;
     width: 100%;
-    padding: 0.3rem 0rem;
+    padding: 0;
 `;
 
 export default React.memo(ListSubItem);

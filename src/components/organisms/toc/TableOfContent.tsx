@@ -63,7 +63,7 @@ const TableOfContent = () => {
 };
 
 const ToCTitle = styled.p`
-  margin-top: 0;
+  margin: 0;
   font-size: 0.7rem;
   font-weight: 700;
 `;

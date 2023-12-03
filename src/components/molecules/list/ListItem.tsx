@@ -62,7 +62,7 @@ const SubList = styled.ul<{height:number}>`
 // `;
 
 const ListContentCol = styled(Grid)`
-    padding: 0.6rem 1.2rem 0.6rem 1.8rem;
+    padding: 0.3rem 1.2rem 0.3rem 1.8rem;
     font-weight: bold;
     text-decoration: none;
 `;
