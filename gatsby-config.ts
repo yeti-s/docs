@@ -61,8 +61,8 @@ const config: GatsbyConfig = {
     {
       resolve:'gatsby-source-filesystem',
       options: {
-        name: 'content',
-        path: './content'
+        name: 'contents',
+        path: './contents'
       }
     },
     `gatsby-plugin-sharp`,

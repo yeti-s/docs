@@ -23,7 +23,7 @@ const createPages: GatsbyNode["createPages"] = async ({ graphql, actions, report
 
 
     request.data?.allMdx.nodes.forEach((node) => {
-        const relativePath = node.internal.contentFilePath?.split("content/")[1];
+        const relativePath = node.internal.contentFilePath?.split("contents/")[1];
         const path = relativePath === "index.mdx" ? '/' : node.id;
         actions.createPage({
             path: path,
@@ -42,7 +42,7 @@ const onCreateWebpackConfig: GatsbyNode["onCreateWebpackConfig"] = ({actions}) =
         resolve: {
             alias: {
                 '@src': resolve('./src'),
-                '@content': resolve('./content')
+                '@contents': resolve('./contents')
             }
         }
     })
