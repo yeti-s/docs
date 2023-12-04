@@ -1,8 +1,7 @@
 import styled from "@emotion/styled";
 import { Link } from "gatsby";
 
-const NoneDecoLink = styled(Link)<{bold?: boolean}>`
-    font-weight: bold;
+const NoneDecoLink = styled(Link)`
     display: inline-block;
     width: 100%;
     white-space: nowrap;

@@ -102,8 +102,12 @@ const GlobalStyle = () => {
       font-size: var(--h6-size);
     }
 
+    button {
+      color: inherit;
+    }
+
     a {
-      color: var(--text-color);
+      color: inherit;
       transition: all 0.25s var(--ease-in-out-quad);
       :hover, :focus {
         color: var(--primary)
@@ -112,7 +116,6 @@ const GlobalStyle = () => {
 
 
     svg {
-      color: var(--text-color);
       transition: all 0.25s var(--ease-in-out-quad);
     }
     svg:hover, svg:focus, svg.is-active {
