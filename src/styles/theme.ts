@@ -19,7 +19,9 @@ export const light: Theme = {
   borderColor: 'rgba(0, 0, 0, 0.15)',
   codeBackground: 'rgba(175,184,193,0.2)',
   codeBlockBackground: '#f6f8fa',
-  blockquote: '#d0d7de' 
+  blockquote: '#d0d7de', 
+
+  commentColor: '#1c813c'
 };
 
 /**
@@ -37,7 +39,9 @@ export const dark: Theme = {
   borderColor: 'rgba(255, 255, 255, 0.15)',
   codeBackground: 'rgba(99,110,123,0.4)',
   codeBlockBackground: '#2d333b',
-  blockquote: '#444c56' 
+  blockquote: '#444c56',
+
+  commentColor: '#00b339'
 };
 
 const themeMode: ThemeGroup = {

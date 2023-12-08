@@ -13,5 +13,7 @@ declare module '@emotion/react' {
         codeBackground: string;
         codeBlockBackground: string;
         blockquote: string;
+
+        commentColor: string;
     }
 }

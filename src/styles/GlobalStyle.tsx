@@ -25,6 +25,7 @@ const GlobalStyle = () => {
       --codeblock-background-color: ${theme.codeBlockBackground};
       --blockquote-background-color: ${theme.blockquote};
       --siderbar-background-color: ${theme.sidebar};
+      --comment-color: ${theme.commentColor};
 
       --error-color: rgb(95, 33, 32);
       --warning-color: rgb(102, 60, 0);
