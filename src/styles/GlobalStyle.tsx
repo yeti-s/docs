@@ -124,6 +124,11 @@ const GlobalStyle = () => {
     }
 
     code {
+      padding: 0.2em 0.4em;
+      margin: 0;
+      font-size: 85%;
+      white-space: break-spaces;
+      border-radius: 6px;
       font-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;
       font-size: 12px;
       background-color: var(--code-background-color);
