@@ -53,9 +53,10 @@ const TitleContainer = styled(Grid)`
 
 const TitleWrapper = styled.h1`
     border: none;
-    padding-bottom: 1.6rem;
+    padding-bottom: 1.2rem;
     margin: 0;
     font-size: 3rem;
+    line-height: 3rem;
 `
 
 export default ContentTitle;
