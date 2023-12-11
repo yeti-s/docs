@@ -1,10 +1,15 @@
-import * as React from "react"
-import type { GatsbySSR } from "gatsby"
+import React from "react";
+import type { GatsbyBrowser } from "gatsby"
+import { ContextProvider } from './src/context/ContextProvier';
+import { RecoilRoot } from "recoil";
 
-export const wrapPageElement: GatsbySSR["wrapPageElement"] = ({ element }) => {
-  return (
-    <div>
-      {element}
-    </div>
-  )
+export const wrapRootElement: GatsbyBrowser["wrapPageElement"] = ({element}) => {
+    return (
+        <ContextProvider>
+            <RecoilRoot>
+                {element}
+            </RecoilRoot>
+        </ContextProvider>
+    )
+
 }
