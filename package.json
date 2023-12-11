@@ -13,6 +13,7 @@
     "build": "gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
+    "deploy": "gatsby build --prefix-paths && gh-pages -d public",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
@@ -31,6 +32,7 @@
     "gatsby-remark-embed-video": "^3.2.1",
     "gatsby-remark-images": "^7.12.3",
     "gatsby-source-filesystem": "^5.12.1",
+    "gh-pages": "^6.1.0",
     "katex": "^0.16.9",
     "prism-react-renderer": "^2.3.0",
     "react": "^18.2.0",
