@@ -57,11 +57,11 @@ const GlobalStyle = () => {
 
     body {
       margin: 0;
-      line-height: 1.5rem;
+      line-height: 1.85rem;
       border-color: var(--border-color);
       background-color: var(--background-color);
       color: var(--text-color);
-      font-family: -apple-system, BlinkMacSystemFont, San Francisco, Helvetica Neue, Helvetica, Ubuntu, Roboto, Noto, Segoe UI, Arial, sans-serif;
+      font-family: sans-serif;
     }
 
     main {
@@ -188,6 +188,10 @@ const GlobalStyle = () => {
     .sub-text {
       color: var(--sub-text-color);
       transition: color 0.2s cubic-bezier(0.69, -0.02, 0.91, 0.4);
+    }
+
+    .hide_scroll::-webkit-scrollbar {
+      display: none;
     }
 
   `} />

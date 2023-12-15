@@ -67,7 +67,7 @@ const MainTemplate = ({ data: { mdx, file }, children }: PageProps<QueryProps>) 
             </HeaderInterface>
             <BodyInterface>
                 <NavigationInterface className="navigation" isNavOpened={isNavOpened}>
-                    <Fixer>
+                    <Fixer className="hide_scroll">
                         <Navigation/>
                     </Fixer>
                 </NavigationInterface>
@@ -143,7 +143,6 @@ const NavigationInterface = styled.aside<{isNavOpened?:boolean}>`
     font-size: 0.875rem;
     overflow-x: hidden;
     overflow-y: auto;
-    padding-top: var(--body-padding-top);
     transition: margin 0.25s var(--ease-in-out-quad);
     @media (min-width: ${MediaSize.IPAD_PRO}px) {
         margin-left: 0;
@@ -151,8 +150,14 @@ const NavigationInterface = styled.aside<{isNavOpened?:boolean}>`
 `;
 
 const Fixer = styled.nav`
+    overflow-y: auto;
+    height: 100%;
+    padding: var(--body-padding-top) 0 3rem 0;
     position: fixed;
     width: var(--sidebar-width);
+    &:-webkit-scrollbar {
+        display: none;
+    }
 `
 
 
