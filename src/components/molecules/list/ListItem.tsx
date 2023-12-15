@@ -34,9 +34,12 @@ const ListItem = ({id, subItems, children}: Props) => {
                         : <NoSubItemBorder width={57}/>
                     }
                 </Grid>
-                <ListContentCol width={85} align={true}>
+                <ListContentCol>
                     {children}
                 </ListContentCol>
+                {
+                    subItems ? <ChildrenSizeWrapper>{subItems.length}</ChildrenSizeWrapper> : <></>
+                }
             </RowWrapper>
             {
                 id && subItems ? 
@@ -70,9 +73,21 @@ const NoSubItemBorder = styled(Grid)`
 `
 
 
-const ListContentCol = styled(Grid)`
-    padding: 0.3rem 1.2rem 0.3rem 1rem;
+const ListContentCol = styled.div`
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    padding: 0.3rem 0.3rem 0.3rem 1rem;
     text-decoration: none;
+    max-width: 75%;
 `;
+
+const ChildrenSizeWrapper = styled.div`
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.65rem;
+`
 
 export default React.memo(ListItem);
