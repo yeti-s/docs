@@ -16,5 +16,9 @@ declare module '@emotion/react' {
 
         commentColor: string;
         cardBackground: string;
+        info: string;
+        warning: string;
+        error: string;
+        success: string;
     }
 }

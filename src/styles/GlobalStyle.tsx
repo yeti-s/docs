@@ -28,6 +28,11 @@ const GlobalStyle = () => {
       --comment-color: ${theme.commentColor};
       --card-background: ${theme.cardBackground};
 
+      --error: ${theme.error};
+      --info: ${theme.info};
+      --warning: ${theme.warning};
+      --success: ${theme.success};
+
       --error-color: rgb(95, 33, 32);
       --warning-color: rgb(102, 60, 0);
       --info-color: rgb(1, 67, 97);

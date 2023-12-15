@@ -22,7 +22,11 @@ export const light: Theme = {
   blockquote: '#d0d7de', 
 
   commentColor: '#1c813c',
-  cardBackground: '#ffffff'
+  cardBackground: '#ffffff',
+  info: 'rgb(0 100 173)',
+  warning: 'rgb(179 175 0)',
+  error: 'rgb(237 51 51)',
+  success: 'rgb(1 141 46)'
 };
 
 /**
@@ -43,7 +47,11 @@ export const dark: Theme = {
   blockquote: '#444c56',
 
   commentColor: '#00b339',
-  cardBackground: '#39393970'
+  cardBackground: '#39393970',
+  info: 'rgb(75 199 255)',
+  warning: 'rgb(227 224 91)',
+  error: 'rgb(211 78 78)',
+  success: 'rgb(65 209 111)'
 };
 
 const themeMode: ThemeGroup = {
