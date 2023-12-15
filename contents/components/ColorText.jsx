@@ -6,7 +6,7 @@ const ColorText = ({color, children}) => {
 }
 
 const ColorWrapper = styled.div`
-    display: inline-block;
+    display: inline;
     color: ${props=> props.color};
 `
 
