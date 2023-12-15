@@ -4,8 +4,7 @@ import React, { useState } from 'react';
 import ListItem from '@src/components/molecules/list/ListItem';
 import ListSubItem from '@src/components/molecules/list/ListSubItem';
 import NoneDecoLink from '@src/components/atoms/links/NoneDecoLink';
-
-type ItemTree = { [subject: string]: Item };
+import Divider from '@src/components/molecules/list/Divider';
 
 class Item {
     id:string;
@@ -14,18 +13,26 @@ class Item {
     children: Array<Item>;
 
     constructor(id="", title="", order:number|null = null) {
-        this.id = id
-        this.title = title
+        this.id = id;
+        this.title = title;
         this.order = order ? order : Number.MAX_VALUE;
         this.children = [];
     }
 }
+
+type Subject = {
+    [content:string]: Item
+};
+
+type ItemTree = { [subject: string]: Subject };
+
 
 type Node = {
     id: string,
     frontmatter: {
         title: string,
         order: number | null
+        subject: string | null
     },
     internal: { contentFilePath: string }
 };
@@ -48,32 +55,42 @@ const sortItems = (a: Item, b: Item) => {
     return a.order > b.order ? 1 : -1;
 }
 
-const createTree = (nodes: Array<Node>): Array<Item> => {
-    if (nodes.length === 0) return [];
+const createTree = (nodes: Array<Node>): Map<string, Map<string, Item>> => {
+    const tree:Map<string, Map<string, Item>> = new Map();
+    const contents:Map<string, Item> = new Map();
+    if (nodes.length === 0) return tree;
 
-    const tree: ItemTree = {}
     nodes.forEach(node => {
         const id = node.id;
         const title = node.frontmatter.title;
+        const subject = node.frontmatter.subject ? node.frontmatter.subject : '';
         const order = node.frontmatter.order;
         const path = node.internal.contentFilePath;
         const parts = path.substring(path.indexOf('contents/') + 9).split('/');
         if (parts.length < 2) return;
-
-        const subject = parts[0];
-        if (!tree[subject]) tree[subject] = new Item();
+        // add content to contents map
+        const content = parts[0];
+        if (!contents.has(content)) contents.set(content, new Item());
+        const targetContent = contents.get(content);
+        // main content
         if (parts[1].includes('index')) {
-            tree[subject].id = id;
-            tree[subject].title = title;
-            tree[subject].order = order ? order : 0;
+            targetContent!.id = id;
+            targetContent!.title = title;
+            targetContent!.order = order ? order : 0;
+            // enroll main content to tree
+            if (!tree.has(subject)) tree.set(subject, new Map());
+            tree.get(subject)!.set(content, targetContent!);
         }
-        else tree[subject].children.push( new Item(id, title, order));
+        // sub content
+        else targetContent!.children.push(new Item(id, title, order));
     })
 
-    Object.values(tree).forEach(item => {
-        item.children.sort(sortItems);
-    })
-    return Object.values(tree).sort(sortItems);
+    for (let [_, subjectItem] of tree) {
+        for (let [_, contentItem] of subjectItem) {
+            contentItem.children.sort(sortItems);
+        }
+    }
+    return tree;
 };
 
 const Navigation = () => {
@@ -81,22 +98,33 @@ const Navigation = () => {
     const { allMdx } = result;
     const [tree] = useState(() => createTree(allMdx.nodes));
 
+    const navItems = (): React.ReactNode => {
+        const components = []
+
+        for (let [subject, subjectItem] of tree) {
+            components.push(<Divider>{subject}</Divider>)
+
+            for (let [_, contentItem] of subjectItem) {
+                const hasChildren = contentItem.children.length > 0;
+                const subItems:Array<React.ReactNode> = contentItem.children.map(child => 
+                    <NoneDecoLink to={`/${child.id}`}>{child.title}</NoneDecoLink>
+                );
+                components.push(
+                    <ListItem key={contentItem.id} id={contentItem.id} subItems={hasChildren ? subItems : null}>
+                        <NoneDecoLink to={`/${contentItem.id}`}>{contentItem.title}</NoneDecoLink>
+                    </ListItem>
+                )
+            }
+        }
+
+        return (
+            <>{components}</>
+        )
+    }
+
     return (
         <NavList>
-            {
-                tree.map(item => {
-                        const hasChildren = item.children.length > 0;
-                        const subItems:Array<React.ReactNode> = item.children.map(child => 
-                            <NoneDecoLink to={`/${child.id}`}>{child.title}</NoneDecoLink>
-                        );
-
-                        return (
-                            <ListItem key={item.id} id={item.id} subItems={hasChildren ? subItems : null}>
-                                <NoneDecoLink to={`/${item.id}`}>{item.title}</NoneDecoLink>
-                            </ListItem>
-                        )
-                })
-            }
+            {navItems()}
         </NavList>
     );
 };
@@ -109,6 +137,7 @@ query {
             frontmatter {
                 title
                 order
+                subject
             }
             internal {
                 contentFilePath
