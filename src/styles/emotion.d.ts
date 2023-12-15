@@ -15,5 +15,6 @@ declare module '@emotion/react' {
         blockquote: string;
 
         commentColor: string;
+        cardBackground: string;
     }
 }

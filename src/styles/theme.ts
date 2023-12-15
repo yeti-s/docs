@@ -21,7 +21,8 @@ export const light: Theme = {
   codeBlockBackground: '#f6f8fa',
   blockquote: '#d0d7de', 
 
-  commentColor: '#1c813c'
+  commentColor: '#1c813c',
+  cardBackground: '#ffffff'
 };
 
 /**
@@ -41,7 +42,8 @@ export const dark: Theme = {
   codeBlockBackground: '#2d333b',
   blockquote: '#444c56',
 
-  commentColor: '#00b339'
+  commentColor: '#00b339',
+  cardBackground: '#39393970'
 };
 
 const themeMode: ThemeGroup = {
