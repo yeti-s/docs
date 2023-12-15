@@ -4,17 +4,30 @@ description: '문서를 생성하게 된 이유와 업데이트 내역을 소개
 order: 0
 ---
 
+import Card from '@contents/components/Card';
+import CardContainer from '@contents/components/CardContainer';
+import thumnail_quantization from './assets/cards/quantization.png';
+import thumnail_pcac from './assets/cards/pcac.gif';
+
 
 기존에 개발을 진행하면서 이전에 이용했던 기술에 대하여 다시금 사용해야 할 때가 종종 있었어요. 
 그럴 때마다 예전 코드를 보며 기억을 상기하는 것이 생각보다 불편한 경험이더라고요. 
 그래서 개발을 진행하며 공부한 내용이나 사용한 기술에 대해 정리하는 것이 필요하다고 느껴졌습니다. 
 
 이미 많은 템플릿과 블로그 플랫폼이 존재하지만, 3차원 포인트 클라우드 데이터를 화면에 올리던가 하는 작업이 필요할 것이라고 생각했어요. 
-그래서 직접 커스텀할 수 있는 문서 사이트를 하나 만들기로 했습니다. 
-
+그래서 직접 커스텀할 수 있는 문서 사이트를 하나 만들기로 했습니다.
 해당 페이지는 [Gatsby Theme Document](https://www.gatsbyjs.com/plugins/gatsby-theme-document/)를 기반으로 생성되었습니다.
-기반만 가져다가 쓴 것이고 많은 업데이트를 진행해서 거의 새로 만들었다고 볼 수 있으니 업데이트 이력을 아래에 적어둘게요.
-따로 추적관리하기 편할 거예요. 
+Typescript로 이식하고 아키텍처를 변경하여 리펙토링을 진행하였어요. 
+
+# 프로젝트
+
+<CardContainer>
+    <Card src={thumnail_quantization} title='Quantization' path='https://github.com/yeti-s/quantization'
+          description='여러가지 quantization method를 통해 LLM 경량화 및 추론 최적화를 진행합니다.'/>
+    <Card src={thumnail_pcac} title='PCAC' path='https://github.com/yeti-s/PCAC'
+          description='측위 오차에 의한 서로 다른 두 point cloud를 자동으로 보정하는 모델을 설계합니다.'/>
+</CardContainer>
+
 
 # 업데이트 내역
 `현재 버전 : 2.1.0`
