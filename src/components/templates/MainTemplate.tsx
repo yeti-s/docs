@@ -108,7 +108,7 @@ query($id: String!, $relativePath: String!) {
     mdx(id: {eq: $id}) {
         id
         body
-        tableOfContents
+        tableOfContents(maxDepth: 2)
         frontmatter {
                 description
                 title
