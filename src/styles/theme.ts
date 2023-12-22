@@ -34,8 +34,8 @@ export const light: Theme = {
  */
 
 export const dark: Theme = {
-  text: '#adbac7',
-  subText: '#adbac7b5',
+  text: '#bfcad5',
+  subText: '#bfcad5b5',
   background: '#22272e',
   textBackground: '#040404',
   primary: 'hsl(260, 100%, 80%)',

@@ -121,6 +121,10 @@ const GlobalStyle = () => {
       }
     }
 
+    mark {
+      background: linear-gradient(to top, #76aaf3c7 60%, transparent 60%);
+    }
+
 
     svg {
       transition: all 0.25s var(--ease-in-out-quad);
