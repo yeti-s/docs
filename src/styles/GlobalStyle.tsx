@@ -23,7 +23,8 @@ const GlobalStyle = () => {
       --primary: ${theme.primary};
       --code-background-color: ${theme.codeBackground};
       --codeblock-background-color: ${theme.codeBlockBackground};
-      --blockquote-background-color: ${theme.blockquote};
+      --blockquote-color: ${theme.blockquote};
+      --blockquote-background-color: ${theme.blockquoteBackground};
       --siderbar-background-color: ${theme.sidebar};
       --comment-color: ${theme.commentColor};
       --card-background: ${theme.cardBackground};
@@ -122,7 +123,8 @@ const GlobalStyle = () => {
     }
 
     mark {
-      background: linear-gradient(to top, #76aaf3c7 60%, transparent 60%);
+      color: inherit;
+      background: linear-gradient(to top, #76aaf3c7 65%, transparent 65%);
     }
 
 
@@ -160,7 +162,7 @@ const GlobalStyle = () => {
 
     blockquote {
       margin: 0;
-      border-left: 0.25em solid var(--blockquote-background-color);
+      border-left: 0.25em solid var(--blockquote-color);
     }
 
     pre {
