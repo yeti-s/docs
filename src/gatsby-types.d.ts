@@ -835,6 +835,7 @@ type MdxFilterListInput = {
 };
 
 type MdxFrontmatter = {
+  readonly date: Maybe<Scalars['Date']>;
   readonly description: Maybe<Scalars['String']>;
   readonly order: Maybe<Scalars['Int']>;
   readonly subject: Maybe<Scalars['String']>;
@@ -842,7 +843,16 @@ type MdxFrontmatter = {
   readonly visible: Maybe<Scalars['Boolean']>;
 };
 
+
+type MdxFrontmatter_dateArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
 type MdxFrontmatterFieldSelector = {
+  readonly date: InputMaybe<FieldSelectorEnum>;
   readonly description: InputMaybe<FieldSelectorEnum>;
   readonly order: InputMaybe<FieldSelectorEnum>;
   readonly subject: InputMaybe<FieldSelectorEnum>;
@@ -851,6 +861,7 @@ type MdxFrontmatterFieldSelector = {
 };
 
 type MdxFrontmatterFilterInput = {
+  readonly date: InputMaybe<DateQueryOperatorInput>;
   readonly description: InputMaybe<StringQueryOperatorInput>;
   readonly order: InputMaybe<IntQueryOperatorInput>;
   readonly subject: InputMaybe<StringQueryOperatorInput>;
@@ -859,6 +870,7 @@ type MdxFrontmatterFilterInput = {
 };
 
 type MdxFrontmatterSortInput = {
+  readonly date: InputMaybe<SortOrderEnum>;
   readonly description: InputMaybe<SortOrderEnum>;
   readonly order: InputMaybe<SortOrderEnum>;
   readonly subject: InputMaybe<SortOrderEnum>;

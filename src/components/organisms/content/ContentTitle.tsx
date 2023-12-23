@@ -5,21 +5,10 @@ import UserInfo from "../../molecules/content/UserInfo";
 
 type Props = {
     title: string,
-    modifiedTime: string
+    date: string
 };
 
-const toKoDateForm = (dateStr:string) => {
-    const koDateFormat = new Intl.DateTimeFormat('ko-KR', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-        timeZone: 'Asia/Seoul'
-    });
-    return koDateFormat.format(new Date(dateStr));
-}
-
-const ContentTitle = ({title, modifiedTime }:Props) => {
-    const [date, setDate] = useState(toKoDateForm(modifiedTime));
+const ContentTitle = ({title, date}:Props) => {
     return (
         <TitleContainer align={true} width={100} container={true}>
             <Grid align={true} width={100}><TitleWrapper>{title}</TitleWrapper></Grid>

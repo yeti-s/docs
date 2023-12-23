@@ -39,19 +39,17 @@ type QueryProps = {
         id: string,
         frontmatter: {
             title: string,
-            description: string
+            description: string,
+            date: string
         },
         tableOfContents: {
             items: Array<Item>
         },
         body: string
-    },
-    file: {
-        modifiedTime: string
     }
 }
 
-const MainTemplate = ({ data: { mdx, file }, children }: PageProps<QueryProps>) => {
+const MainTemplate = ({ data: { mdx }, children }: PageProps<QueryProps>) => {
     const isWide = useRecoilValue(createAtom(TOGGLE_WIDE, false));
     const isNavOpened = useRecoilValue(createAtom(TOGGLE_NAV, false));
     const tocSetter = useSetRecoilState(createAtom(SET_TABLE_OF_CONTENT, mdx.tableOfContents.items));
@@ -73,7 +71,7 @@ const MainTemplate = ({ data: { mdx, file }, children }: PageProps<QueryProps>) 
                 </NavigationInterface>
                 <ContentInterface isNavOpened={isNavOpened}>
                     <ContentWrapper isWide={isWide}>
-                        <ContentTitle title={mdx.frontmatter.title} modifiedTime={file.modifiedTime}/>
+                        <ContentTitle title={mdx.frontmatter.title} date={mdx.frontmatter.date}/>
                         <MDXProvider components={{
                             p: P,
                             h1: H1,
@@ -104,7 +102,7 @@ const MainTemplate = ({ data: { mdx, file }, children }: PageProps<QueryProps>) 
 };
 
 export const query = graphql`
-query($id: String!, $relativePath: String!) {
+query($id: String!) {
     mdx(id: {eq: $id}) {
         id
         body
@@ -112,10 +110,8 @@ query($id: String!, $relativePath: String!) {
         frontmatter {
                 description
                 title
+                date
         }
-    }
-    file(relativePath: {eq: $relativePath}) {
-        modifiedTime
     }
 }`;
 
