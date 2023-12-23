@@ -131,7 +131,7 @@ const Navigation = () => {
 
 const query = graphql`
 query {
-    allMdx(filter: {frontmatter: {visible: {eq: true}}}) {
+    allMdx(filter: {frontmatter: {visible: {ne: false}}}) {
         nodes {
             id
             frontmatter {
