@@ -835,20 +835,12 @@ type MdxFilterListInput = {
 };
 
 type MdxFrontmatter = {
-  readonly date: Maybe<Scalars['Date']>;
+  readonly date: Maybe<Scalars['String']>;
   readonly description: Maybe<Scalars['String']>;
   readonly order: Maybe<Scalars['Int']>;
   readonly subject: Maybe<Scalars['String']>;
   readonly title: Maybe<Scalars['String']>;
   readonly visible: Maybe<Scalars['Boolean']>;
-};
-
-
-type MdxFrontmatter_dateArgs = {
-  difference: InputMaybe<Scalars['String']>;
-  formatString: InputMaybe<Scalars['String']>;
-  fromNow: InputMaybe<Scalars['Boolean']>;
-  locale: InputMaybe<Scalars['String']>;
 };
 
 type MdxFrontmatterFieldSelector = {
@@ -861,7 +853,7 @@ type MdxFrontmatterFieldSelector = {
 };
 
 type MdxFrontmatterFilterInput = {
-  readonly date: InputMaybe<DateQueryOperatorInput>;
+  readonly date: InputMaybe<StringQueryOperatorInput>;
   readonly description: InputMaybe<StringQueryOperatorInput>;
   readonly order: InputMaybe<IntQueryOperatorInput>;
   readonly subject: InputMaybe<StringQueryOperatorInput>;
