@@ -839,6 +839,7 @@ type MdxFrontmatter = {
   readonly order: Maybe<Scalars['Int']>;
   readonly subject: Maybe<Scalars['String']>;
   readonly title: Maybe<Scalars['String']>;
+  readonly visible: Maybe<Scalars['Boolean']>;
 };
 
 type MdxFrontmatterFieldSelector = {
@@ -846,6 +847,7 @@ type MdxFrontmatterFieldSelector = {
   readonly order: InputMaybe<FieldSelectorEnum>;
   readonly subject: InputMaybe<FieldSelectorEnum>;
   readonly title: InputMaybe<FieldSelectorEnum>;
+  readonly visible: InputMaybe<FieldSelectorEnum>;
 };
 
 type MdxFrontmatterFilterInput = {
@@ -853,6 +855,7 @@ type MdxFrontmatterFilterInput = {
   readonly order: InputMaybe<IntQueryOperatorInput>;
   readonly subject: InputMaybe<StringQueryOperatorInput>;
   readonly title: InputMaybe<StringQueryOperatorInput>;
+  readonly visible: InputMaybe<BooleanQueryOperatorInput>;
 };
 
 type MdxFrontmatterSortInput = {
@@ -860,6 +863,7 @@ type MdxFrontmatterSortInput = {
   readonly order: InputMaybe<SortOrderEnum>;
   readonly subject: InputMaybe<SortOrderEnum>;
   readonly title: InputMaybe<SortOrderEnum>;
+  readonly visible: InputMaybe<SortOrderEnum>;
 };
 
 type MdxGroupConnection = {
