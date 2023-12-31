@@ -4,7 +4,7 @@ import SubjectIcon from '@mui/icons-material/Subject';
 import ListIcon from '@mui/icons-material/List';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 
-const Project = ({domain, members='', schedule='', roles=[], tools=[]}) => {
+const Project = ({members='', domain=[], roles=[], tools=[], schedule='',}) => {
 
     const createTags = (items:Array<string>, color:string) => {
         const components:Array<React.ReactNode> = [];
@@ -28,7 +28,7 @@ const Project = ({domain, members='', schedule='', roles=[], tools=[]}) => {
             <ListIcon fontSize='small' style={{marginRight: 4}}/>
                 분야
             </Col>
-            <Col width={70}>{createTags([domain], 'info')}</Col>
+            <Col width={70}>{createTags(domain, 'info')}</Col>
         </Row>
         <Row>
         <Col width={20}>

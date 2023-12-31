@@ -9,7 +9,7 @@ const TwoCols = ({align, children}) =>
 const TwoColsWrapper = styled.div<{align?:string}>`
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: ${p=>p.align ? p.align : 'unset'};
 `;
 
