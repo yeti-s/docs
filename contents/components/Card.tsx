@@ -55,6 +55,11 @@ const CardTitle = styled.div`
     font-weight: bold;
     font-size: 1.2rem;
     color: var(--text-color);
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    text-overflow: ellipsis;
+    overflow: hidden;
 `
 
 const CardDesc = styled.div`
