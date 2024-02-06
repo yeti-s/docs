@@ -1,7 +1,26 @@
 import { GatsbyNode, graphql } from "gatsby";
 import { resolve } from 'path'
-// import MDXTemplate from "./src/templates/MDXTemplate";
 const MDXTemplate = resolve('./src/components/templates/MainTemplate.tsx');
+
+const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] = ({ actions }) => {
+    const { createTypes } = actions;
+    const typeDefs = `
+        type MdxFrontmatter @dontInfer {
+            title: String!
+            date: String
+            description: String
+            subject: String
+            category: String
+            visible: Boolean
+            order: Int
+        }
+
+        type Mdx implements Node {
+            frontmatter: MdxFrontmatter
+        }
+    `;
+    createTypes(typeDefs);
+};
 
 const createPages: GatsbyNode["createPages"] = async ({ graphql, actions, reporter }) => {
     const request = await graphql<Queries.Query>(`
@@ -41,15 +60,16 @@ const createPages: GatsbyNode["createPages"] = async ({ graphql, actions, report
 }
 
 
-const onCreateWebpackConfig: GatsbyNode["onCreateWebpackConfig"] = ({actions}) => {
+const onCreateWebpackConfig: GatsbyNode["onCreateWebpackConfig"] = ({ actions }) => {
     actions.setWebpackConfig({
         resolve: {
             alias: {
                 '@src': resolve('./src'),
-                '@contents': resolve('./contents')
+                '@contents': resolve('./contents'),
+                '@elements': resolve('./contents/elements')
             }
         }
     })
 }
 
-export { createPages, onCreateWebpackConfig }
+export { createPages, onCreateWebpackConfig, createSchemaCustomization}

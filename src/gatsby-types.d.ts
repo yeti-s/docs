@@ -840,7 +840,7 @@ type MdxFrontmatter = {
   readonly description: Maybe<Scalars['String']>;
   readonly order: Maybe<Scalars['Int']>;
   readonly subject: Maybe<Scalars['String']>;
-  readonly title: Maybe<Scalars['String']>;
+  readonly title: Scalars['String'];
   readonly visible: Maybe<Scalars['Boolean']>;
 };
 

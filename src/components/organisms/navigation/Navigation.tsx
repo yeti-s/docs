@@ -32,9 +32,9 @@ type Node = {
     id: string,
     frontmatter: {
         title: string,
+        subject: string,
+        category: string | null,
         order: number | null
-        subject: string
-        category: string
     },
     internal: {contentFilePath: string}
 };
@@ -76,7 +76,7 @@ const createCategoryMainItemsMap = (nodes: Array<Node>): Map<string, Array<MainI
         const order = node.frontmatter.order;
         const filename = getFileName(node.internal.contentFilePath);
         
-        if (!categoryMainItemsMap.has(category))
+        if (category && !categoryMainItemsMap.has(category))
             categoryMainItemsMap.set(category, new Array<MainItem>());
 
         if (!subjectItemsMap.has(subject))
@@ -87,7 +87,7 @@ const createCategoryMainItemsMap = (nodes: Array<Node>): Map<string, Array<MainI
             // main index
             if (subject === 'index') return;
             const path = `/${subject}`;
-            categoryMainItemsMap.get(category)!.push(new MainItem(id, title, path, order, subjectItemsMap.get(subject)!));
+            categoryMainItemsMap.get(category!)!.push(new MainItem(id, title, path, order, subjectItemsMap.get(subject)!));
         }
         // sub item
         else {
