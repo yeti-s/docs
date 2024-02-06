@@ -29,14 +29,12 @@ const createPages: GatsbyNode["createPages"] = async ({ graphql, actions, report
         const filename = node.internal.contentFilePath?.split('/').pop()?.split('.')[0];
         const subject = node.frontmatter?.subject;
         const path = `${subject}/${filename}`.replaceAll('/index', '');
-        const relativePath = node.internal.contentFilePath?.split("contents/")[1];
 
         actions.createPage({
             path: path === 'index' ? '/' : path,
             component: `${MDXTemplate}?__contentFilePath=${node.internal.contentFilePath}`,
             context: {
-                id: node.id,
-                relativePath: relativePath
+                id: node.id
             }
         })
     })
