@@ -835,6 +835,7 @@ type MdxFilterListInput = {
 };
 
 type MdxFrontmatter = {
+  readonly category: Maybe<Scalars['String']>;
   readonly date: Maybe<Scalars['String']>;
   readonly description: Maybe<Scalars['String']>;
   readonly order: Maybe<Scalars['Int']>;
@@ -844,6 +845,7 @@ type MdxFrontmatter = {
 };
 
 type MdxFrontmatterFieldSelector = {
+  readonly category: InputMaybe<FieldSelectorEnum>;
   readonly date: InputMaybe<FieldSelectorEnum>;
   readonly description: InputMaybe<FieldSelectorEnum>;
   readonly order: InputMaybe<FieldSelectorEnum>;
@@ -853,6 +855,7 @@ type MdxFrontmatterFieldSelector = {
 };
 
 type MdxFrontmatterFilterInput = {
+  readonly category: InputMaybe<StringQueryOperatorInput>;
   readonly date: InputMaybe<StringQueryOperatorInput>;
   readonly description: InputMaybe<StringQueryOperatorInput>;
   readonly order: InputMaybe<IntQueryOperatorInput>;
@@ -862,6 +865,7 @@ type MdxFrontmatterFilterInput = {
 };
 
 type MdxFrontmatterSortInput = {
+  readonly category: InputMaybe<SortOrderEnum>;
   readonly date: InputMaybe<SortOrderEnum>;
   readonly description: InputMaybe<SortOrderEnum>;
   readonly order: InputMaybe<SortOrderEnum>;
@@ -2026,7 +2030,7 @@ type StringQueryOperatorInput = {
 type Unnamed_1_QueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type Unnamed_1_Query = { readonly allMdx: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly internal: { readonly contentFilePath: string | null } }> } };
+type Unnamed_1_Query = { readonly allMdx: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly frontmatter: { readonly subject: string | null } | null, readonly internal: { readonly contentFilePath: string | null } }> } };
 
 
 }
