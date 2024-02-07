@@ -32,7 +32,7 @@ type Node = {
     id: string,
     frontmatter: {
         title: string,
-        subject: string,
+        subject: string | null,
         category: string | null,
         order: number | null
     },
@@ -44,10 +44,6 @@ type QueryProps = {
         nodes: Array<Node>
     }
 };
-
-const getFileName = (filePath: string) => {
-    return filePath.split('/').pop()!.split('.')[0]
-}
 
 const sortItems = (a: Item, b: Item) => {
     if (a instanceof MainItem && b instanceof MainItem) {
@@ -74,27 +70,26 @@ const createCategoryMainItemsMap = (nodes: Array<Node>): Map<string, Array<MainI
         const category = node.frontmatter.category;
         const subject = node.frontmatter.subject;
         const order = node.frontmatter.order;
-        const filename = getFileName(node.internal.contentFilePath);
         
-        if (category && !categoryMainItemsMap.has(category))
-            categoryMainItemsMap.set(category, new Array<MainItem>());
+        // main item
+        if (category) {
+            if (!categoryMainItemsMap.has(category))
+                categoryMainItemsMap.set(category, new Array<MainItem>());
 
-        if (!subjectItemsMap.has(subject))
-            subjectItemsMap.set(subject, new Array<Item>());
-
-        // subject item
-        if (filename === 'index') {
-            // main index
-            if (subject === 'index') return;
-            const path = `/${subject}`;
-            categoryMainItemsMap.get(category!)!.push(new MainItem(id, title, path, order, subjectItemsMap.get(subject)!));
+            const path = `/${title}`;
+            categoryMainItemsMap.get(category!)!.push(new MainItem(id, title, path, order, subjectItemsMap.get(title)!));
         }
         // sub item
-        else {
-            const items = subjectItemsMap.get(subject)!;
-            const path = `/${subject}/${filename}`;
+        else if (subject) {
+            if (!subjectItemsMap.has(subject))
+                subjectItemsMap.set(subject, new Array<Item>());
+
+            const items = subjectItemsMap.get(subject!)!;
+            const path = `/${subject}/${title}`;
             items.push(new Item(id, title, path, order));
         }
+        // main page or invalid item
+        else {}
     })
 
     for (let [_, mainItems] of categoryMainItemsMap) {

@@ -2030,7 +2030,7 @@ type StringQueryOperatorInput = {
 type Unnamed_1_QueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type Unnamed_1_Query = { readonly allMdx: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly frontmatter: { readonly subject: string | null } | null, readonly internal: { readonly contentFilePath: string | null } }> } };
+type Unnamed_1_Query = { readonly allMdx: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly frontmatter: { readonly title: string, readonly subject: string | null, readonly category: string | null } | null, readonly internal: { readonly contentFilePath: string | null } }> } };
 
 
 }

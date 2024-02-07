@@ -29,7 +29,9 @@ const createPages: GatsbyNode["createPages"] = async ({ graphql, actions, report
             nodes {
                 id
                 frontmatter {
+                    title
                     subject
+                    category
                 }
                 internal {
                     contentFilePath
@@ -46,11 +48,16 @@ const createPages: GatsbyNode["createPages"] = async ({ graphql, actions, report
 
     request.data?.allMdx.nodes.forEach((node) => {
         const filename = node.internal.contentFilePath?.split('/').pop()?.split('.')[0];
-        const subject = node.frontmatter?.subject;
-        const path = `${subject}/${filename}`.replaceAll('/index', '');
+        const title = node.frontmatter!.title
+        const subject = node.frontmatter!.subject;
+        const category = node.frontmatter!.category;
+        let path = '';
+        if (category) path = `/${title}`;
+        else if (subject) path = `/${subject}/${title}`;
+        else path = '/';
 
         actions.createPage({
-            path: path === 'index' ? '/' : path,
+            path: path,
             component: `${MDXTemplate}?__contentFilePath=${node.internal.contentFilePath}`,
             context: {
                 id: node.id
