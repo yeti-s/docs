@@ -75,6 +75,8 @@ const createCategoryMainItemsMap = (nodes: Array<Node>): Map<string, Array<MainI
         if (category) {
             if (!categoryMainItemsMap.has(category))
                 categoryMainItemsMap.set(category, new Array<MainItem>());
+            if (!subjectItemsMap.has(title))
+                subjectItemsMap.set(title, new Array<Item>());
 
             const path = `/${title}`;
             categoryMainItemsMap.get(category!)!.push(new MainItem(id, title, path, order, subjectItemsMap.get(title)!));
