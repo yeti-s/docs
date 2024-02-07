@@ -1,7 +1,6 @@
 ---
 title: 'Introduction'
 description: '문서를 생성하게 된 이유와 업데이트 내역을 소개합니다.'
-subject: 'index'
 date: '2024년 2월 7일'
 ---
 
@@ -71,16 +70,15 @@ import * as Elem from '@elements';
 해당 페이지는 [Gatsby Theme Document](https://www.gatsbyjs.com/plugins/gatsby-theme-document/)를 기반으로 생성되었습니다.
 Typescript로 이식하고 아키텍처를 변경하여 리펙토링을 진행하였어요.
 
-### 문서 규칙
+### 메타데이터 규칙
 
-.mdx 파일은 아래와 같은 Frontmatter를 가집니다.
+각 컨텐츠의 메인에 해당하는 index.mdx 파일은 아래와 같은 메타데이터를 가집니다.
 ```
 ---
 title: 문서의 제목 (필수!)
 description: 문서에 대한 설명
 date: 문서 최종 수정 날짜
-category: 문서의 카테고리
-subject: 문서의 주제
+category: 문서의 카테고리 (필수!)
 visible: 문서 공개 여부
 order: 문서 정렬 순서
 ---
@@ -88,6 +86,25 @@ order: 문서 정렬 순서
 ...
 ...
 ```
+
+해당 컨텐츠의 페이지는 `/{title}`의 URL을 가집니다.
+
+컨텐츠의 하위 항목에 해당하는 *.mdx 파일은 아래와 같은 메타데이터를 가집니다.
+```
+---
+title: 문서의 제목 (필수!)
+description: 문서에 대한 설명
+date: 문서 최종 수정 날짜
+subject: 문서의 주제 (필수!)
+visible: 문서 공개 여부
+order: 문서 정렬 순서
+---
+
+...
+...
+```
+
+해당 하위 컨텐츠의 페이지는 `/{subject}/{title}`의 URL을 가집니다.
 
 ### 폴더 구조
 
@@ -150,9 +167,17 @@ import * as Elem from '@elements';
 
 
 # ✨ 업데이트 내역
-`현재 버전 : 2.4.0`
+`현재 버전 : 2.4.1`
 
 ## 버전 2
+
+**2.4.1 업데이트**
+
+* 컨텐츠의 유형에 따라 메타데이터 구조가 변경됩니다.
+
+**2.4.0 업데이트**
+
+* 컨텐츠 메인과 하위 내용 파일의 메타데이터 구조가 변경됩니다.
 
 **2.4.0 업데이트**
 > 기존의 폴더 구조는 컨텐츠에 들어가는 이미지와 같은 파일들이 상대 경로로 사용되었습니다.
