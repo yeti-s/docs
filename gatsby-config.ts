@@ -41,6 +41,9 @@ const config: GatsbyConfig = {
           {
             resolve: `gatsby-remark-images`,
             options: {
+              showCaptions: ['alt'],
+              markdownCaptions: true,
+              linkImagesToOriginal: false,
               maxWidth: 704
             }
           },

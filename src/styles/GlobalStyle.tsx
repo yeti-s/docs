@@ -178,6 +178,13 @@ const GlobalStyle = () => {
 
     /* custom class */
     
+    .gatsby-resp-image-figcaption {
+      text-align: center;
+      font-style: italic;
+      font-weight: bold;
+      color: var(--text-color);
+    }
+
     .sidebar {
       background: var(--siderbar-background-color);
       border-right: 0.1rem solid var(--border-color);
