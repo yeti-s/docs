@@ -14,7 +14,7 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 import { createAtom, TOGGLE_WIDE, TOGGLE_NAV, SET_TABLE_OF_CONTENT } from "@src/context/atoms";
 import MediaSize from "@src/styles/media";
 import 'katex/dist/katex.min.css'
-
+import 'gatsby-remark-link-beautify/themes/notion.css';
 /* ---custom MDX components--- */
 import P from "@src/components/mdx/Paragraph";
 import { H1, H2, H3, H4, H5, H6 } from "@src/components/mdx/Heading";

@@ -48,6 +48,9 @@ const config: GatsbyConfig = {
             }
           },
           {
+            resolve: 'gatsby-remark-link-beautify'
+          },
+          {
             resolve: `gatsby-remark-autolink-headers`,
             options: {
               icon: false
