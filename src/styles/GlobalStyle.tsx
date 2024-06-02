@@ -124,7 +124,7 @@ const GlobalStyle = () => {
 
     mark {
       color: inherit;
-      background: linear-gradient(to top, #76aaf3c7 65%, transparent 65%);
+      background: linear-gradient(to top, #dbeaffc7 65%, transparent 65%);
     }
 
 
