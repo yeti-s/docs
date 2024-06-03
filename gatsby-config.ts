@@ -68,7 +68,8 @@ const config: GatsbyConfig = {
       resolve:'gatsby-source-filesystem',
       options: {
         name: 'contents',
-        path: './contents'
+        path: './contents',
+        ignore: ['**/\.*', '**/README.md', '**/LICENSE']
       }
     },
     {
