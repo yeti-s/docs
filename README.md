@@ -9,55 +9,12 @@
 해당 페이지는 [Gatsby Theme Document](https://www.gatsbyjs.com/plugins/gatsby-theme-document/)를 기반으로 생성되었습니다.
 Typescript로 이식하고 아키텍처를 변경하여 리펙토링을 진행하였어요.
 
-### 메타데이터 규칙
-
-각 컨텐츠의 메인에 해당하는 index.mdx 파일은 아래와 같은 메타데이터를 가집니다.
-```
----
-title: 문서의 제목 (필수!)
-description: 문서에 대한 설명
-date: 문서 최종 수정 날짜
-category: 문서의 카테고리 (필수!)
-visible: 문서 공개 여부
-order: 문서 정렬 순서
----
-
-...
-...
-```
-
-해당 컨텐츠의 페이지는 `/{title}`의 URL을 가집니다.
-
-컨텐츠의 하위 항목에 해당하는 *.mdx 파일은 아래와 같은 메타데이터를 가집니다.
-```
----
-title: 문서의 제목 (필수!)
-description: 문서에 대한 설명
-date: 문서 최종 수정 날짜
-subject: 문서의 주제 (필수!)
-visible: 문서 공개 여부
-order: 문서 정렬 순서
----
-
-...
-...
-```
-
-해당 하위 컨텐츠의 페이지는 `/{subject}/{title}`의 URL을 가집니다.
-
-### 폴더 구조
+# 🏗️ 폴더 구조
 
 문서를 구성하는 컨텐츠는 아래와 같은 폴더 구조를 따라야 합니다.
 
 ```
 |-- contents
-|     |-- elements
-|           |-- index.ts
-|           |-- elem1.tsx
-|           |-- elem2.tsx
-|           |-- ...
-|     |-- index
-|           |-- index.mdx
 |     |-- category1
 |           |-- subject1
 |                 |-- index
@@ -73,6 +30,13 @@ order: 문서 정렬 순서
 |                 |-- ...
 |           |-- ...
 |     |-- ...
+|-- elems
+|     |-- index.ts
+|     |-- elem1.tsx
+|     |-- elem2.tsx
+|     |-- ...
+|-- index
+|     |-- index.mdx
 ```
 
 * contents/index 폴더에 존재하는 index.mdx 파일은 문서의 첫 페이지에 대한 내용을 나타냅니다.
@@ -81,11 +45,31 @@ order: 문서 정렬 순서
 * 각 페이지에 들어갈 이미지와 같은 데이터는 해당 페이지를 구성하는 .mdx 파일과 동일한 위치에 존재합니다.
 * elements 폴더에 .tsx 파일은 컨텐츠에 사용할 ReactNode들을 나타냅니다.
 
+### 메인페이지 규칙
+
+메인페이지의 메타데이터는 아래와 같은 형식을 가집니다.
+
+```
+# index/index.mdx
+---
+title: 'Introduction'
+description: '문서를 생성하게 된 이유와 업데이트 내역을 소개합니다.'
+date: '2024년 6월 4일'
+---
+```
+
+- 업데이트 내역에 맞춰 날짜를 수정합니다.
+- 해당 내용에 맞춰 README.md 파일도 함께 변경합니다.
+
+### 컨텐츠 생성 규칙
+
+컨텐츠 생성 규칙은 [docs-contents 문서](https://github.com/yeti-s/docs-contents)에서 자세하게 다룹니다.
+
 ### Element 추가 및 사용
 
 새로운 Element를 추가할 때 index.ts 파일을 아래와 같이 변경해야합니다.
 ```typescript
-// @elements/index.ts
+// @elems/index.ts
 import NewElem from './NewElem';
 ...
 export {
@@ -96,7 +80,7 @@ export {
 추가한 Element는 아래와 같이 사용할 수 있습니다.
 ```javascript
 // some.mdx
-import * as Elem from '@elements';
+import * as Elem from '@elems';
 <Elem.NewElem>
       내용
 </Elem.NewElem>
