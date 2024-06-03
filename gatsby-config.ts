@@ -71,6 +71,13 @@ const config: GatsbyConfig = {
         path: './contents'
       }
     },
+    {
+      resolve:'gatsby-source-filesystem',
+      options: {
+        name: 'index',
+        path: './index'
+      }
+    },
     `gatsby-plugin-sharp`,
     `gatsby-plugin-emotion`
   ],

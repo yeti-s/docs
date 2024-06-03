@@ -73,7 +73,7 @@ const onCreateWebpackConfig: GatsbyNode["onCreateWebpackConfig"] = ({ actions })
             alias: {
                 '@src': resolve('./src'),
                 '@contents': resolve('./contents'),
-                '@elements': resolve('./contents/elements')
+                '@elems': resolve('./elems')
             }
         }
     })
