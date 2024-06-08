@@ -64,8 +64,8 @@ const MainTemplate = ({ data: { mdx }, children }: PageProps<QueryProps>) => {
                 <Header/>
             </HeaderInterface>
             <BodyInterface>
-                <NavigationInterface className="navigation" isNavOpened={isNavOpened}>
-                    <Fixer className="hide_scroll">
+                <NavigationInterface isNavOpened={isNavOpened}>
+                    <Fixer className="hide_scroll navigation">
                         <Navigation/>
                     </Fixer>
                 </NavigationInterface>
@@ -148,7 +148,7 @@ const NavigationInterface = styled.aside<{isNavOpened?:boolean}>`
 const Fixer = styled.nav`
     overflow-y: auto;
     height: 100%;
-    padding: var(--body-padding-top) 0 3rem 0;
+    padding: var(--body-padding-top) 0 0 0;
     position: fixed;
     width: var(--sidebar-width);
     &:-webkit-scrollbar {
